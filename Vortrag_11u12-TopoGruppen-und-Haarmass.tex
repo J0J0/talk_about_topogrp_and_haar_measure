@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper,ngerman,DIV=11]{scrreprt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[babel]{csquotes}
+\usepackage[shortlabels]{enumitem}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{ifmtarg}
+
+%\usepackage[pdftex]{graphicx}
+%\usepackage[all]{xy}
+
+\usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
+            pdftitle={Seminar Modultheorie - Vortrag 11 und 12: Topologische
+            Gruppen und das Haar'sche Maß},%
+            pdfauthor={Johannes Prem}]{hyperref}
+%
+\usepackage{cleveref}
+
+\usepackage{helpers} % my own helpers.sty
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% macro definitions and other things
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% global redefinition of paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% make parenthesized versions of \ref and cleveref's \cref
+\newcommand*{\pref}[1]{(\ref{#1})}
+\newcommand*{\pcref}[1]{(\cref{#1})}
+
+% make \varepsilon and \varphi default
+\varifygreekletters{\epsilon\phi}
+
+% change the qedsymbol to my favoured blacksquare
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% style for /all/ theorem like environments
+\newtheoremstyle{mythms}
+ {15pt}% space above
+ {12pt}% space below 
+ {}% body font
+ {}% indent amount
+ {\bfseries}% theorem head font
+ {.}% punctuation after theorem head
+ {0.6cm}% space after theorem head (\newline possible)
+ {}% theorem head spec 
+ 
+% set style and define thm like environments
+\theoremstyle{mythms}
+\newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
+\newtheorem{thDef}[globalnum]{Definition}
+\newtheorem{thSatz}[globalnum]{Satz}
+%\newtheorem{thPropos}[globalnum]{Proposition}
+\newtheorem{thLemma}[globalnum]{Lemma}
+\newtheorem{thKorollar}[globalnum]{Korollar}
+
+\newtheorem{thBemerkung}[globalnum]{Bemerkung}
+\newtheorem{thBeisp}[globalnum]{Beispiel}
+\newtheorem{thBeispiele}[globalnum]{Beispiele}
+\newenvironment{BspList}{%
+\nopagebreak\begin{thBeispiele}%
+\hfill\begin{enumerate}[a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
+}{%
+\end{enumerate}\end{thBeispiele}
+}
+%
+
+% also define a 'proofsketch' version of 'proof'
+\newenvironment{proofsketch}[1][]{%
+\begin{proof}[Beweisskizze#1]
+}{%
+\end{proof}
+}
+
+% inject pdfbookmarks at thm like environments
+\makeatletter
+\let\origthmhead=\thmhead
+\renewcommand{\thmhead}[3]{%
+\origthmhead{#1}{#2}{#3}%
+\pdfbookmark[1]{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+}
+\makeatother
+
+% define some additional 'operators'
+\DeclareMathOperator*{\Exists}{\exists}
+\DeclareMathOperator*{\forAll}{\forall}
+%\DeclareMathOperator{\Kern}{ker}
+%\DeclareMathOperator{\Image}{im}
+
+% define an 'abs' and 'Spann' command
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
+
+% define missing arrows
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
+
+% provide mathbb symbols \N \Z \Q \R and \C
+\defmathbbsymbols{N Z Q R C}
+
+% just some shortcuts
+\newcommand{\mr}{\mathrm}
+%\newcommand{\barfrak}[1]{\bar{\mathfrak{#1}}}
+%\newcommand{\len}[1][R]{\modulelength_{#1}}
+\newcommand{\ZRest}[1]{\Z/#1\Z}
+%\newcommand{\D}{\mr{d}}
+%\newcommand{\A}[2]{a_{#1#2}}
+%\newcommand{\vzfix}{\phantom{-}}
+
+
+% listing with -- is nicer than with bullets 
+\setlist[itemize,1]{label=--}
+
+%% xy tip selection (ComputerModern)
+%%\SelectTips{cm}{}
+%%\UseTips
+
+% start at chapter 0
+\setcounter{chapter}{-1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\input{titlepage}
+\input{chap0}
+
+\nocite{bookc:folland99}
+\nocite{bookc:elstrod11}
+
+\appendix
+\bibliographystyle{plaindin}
+\bibliography{bibsources}
+
+\end{document}
+
