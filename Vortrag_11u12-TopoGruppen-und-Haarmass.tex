@@ -22,22 +22,24 @@
 %\usepackage[all]{xy}
 
 \usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
-            pdftitle={Seminar Modultheorie - Vortrag 11 und 12: Topologische
-            Gruppen und das Haar'sche Maß},%
             pdfauthor={Johannes Prem}]{hyperref}
 %
 \usepackage{cleveref}
 
 \usepackage{helpers} % my own helpers.sty
 
+% 'ß' in the title requires this to be called outside \usepackage's options
+\hypersetup{%
+    pdftitle={Seminar Modultheorie - Vortrag 11 und 12: Topologische
+              Gruppen und das Haar'sche Maß}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% macro definitions and other things
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % global redefinition of paragraph spacing
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{0.5em}
 
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
@@ -64,6 +66,7 @@
 \theoremstyle{mythms}
 \newtheorem{globalnum}{DUMMY DUMMY DUMMY}[chapter]
 \newtheorem{thDef}[globalnum]{Definition}
+\newtheorem{thNotation}[globalnum]{Notation}
 \newtheorem{thSatz}[globalnum]{Satz}
 %\newtheorem{thPropos}[globalnum]{Proposition}
 \newtheorem{thLemma}[globalnum]{Lemma}
@@ -96,32 +99,89 @@
 }
 \makeatother
 
-% define some additional 'operators'
-\DeclareMathOperator*{\Exists}{\exists}
-\DeclareMathOperator*{\forAll}{\forall}
+% new math operators
+\DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
+
+% new math 'operators'
+\DeclareMathOperator{\matGL}{GL}
+\DeclareMathOperator{\matSL}{SL}
+\DeclareMathOperator{\matO}{O}
+\DeclareMathOperator{\matSO}{SO}
 %\DeclareMathOperator{\Kern}{ker}
 %\DeclareMathOperator{\Image}{im}
 
-% define an 'abs' and 'Spann' command
+% make quantors that use \limits per default
+\DeclareMathOperator*{\Exists}{\exists}
+\DeclareMathOperator*{\forAll}{\forall}
+
+% define an 'abs', 'norm' and 'Spann' command
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \DeclarePairedDelimiter{\Spann}{\langle}{\rangle}
+
+%---
+% the following creates an operator norm as a tripple stroke \vert
+% (source: mathabx fonts)
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{
+      <5> <6> <7> <8> <9> <10> gen * matha
+      <10.95> matha10 <12> <14.4> <17.28> <20.74> <24.88> matha12
+      }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+
+\DeclareMathDelimiter{\vvvert}{0}{matha}{"7E}{mathx}{"17}
+\DeclarePairedDelimiter{\opnorm}{\vvvert}{\vvvert}
+%---
 
 % define missing arrows
 \newcommand{\longto}{\longrightarrow}
 \newcommand{\longhookrightarrow}{\lhook\joinrel\relbar\joinrel\rightarrow}
 
 % provide mathbb symbols \N \Z \Q \R and \C
-\defmathbbsymbols{N Z Q R C}
+\defmathbbsymbols{N Z Q C}
+\defmathbbsymbolsubs{R}
+
+% define some set specific macros
+\newcommand{\setclosure}[1]{\overline{#1}}
+\newcommand{\setinterior}[1]{#1^\circ}
+\newcommand{\setboundary}[1]{\partial #1}
 
 % just some shortcuts
 \newcommand{\mr}{\mathrm}
+\newcommand{\mt}{^\mathsf{t}}
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\eqdef}{\eqqcolon}
 %\newcommand{\barfrak}[1]{\bar{\mathfrak{#1}}}
 %\newcommand{\len}[1][R]{\modulelength_{#1}}
-\newcommand{\ZRest}[1]{\Z/#1\Z}
+%\newcommand{\ZRest}[1]{\Z/#1\Z}
 %\newcommand{\D}{\mr{d}}
 %\newcommand{\A}[2]{a_{#1#2}}
 %\newcommand{\vzfix}{\phantom{-}}
+\newcommand{\qiffq}{\quad\iff\quad}
+\newcommand{\qimpliesq}{\quad\implies\quad}
+\newcommand{\qoderq}{\qtextq{oder}}
+\newcommand{\qqundqq}{\qqtextqq{und}}
+\newcommand{\qundq}{\qtextq{und}}
+\newcommand{\qqtextqq}[1]{\qquad\text{#1}\qquad}
+\newcommand{\qtextq}[1]{\quad\text{#1}\quad}
 
+\newcommand{\frakU}{\mathfrak{U}}
+
+
+% make a \Mid macro as flexible replacement for \mid in sets definitions
+\newcommand{\Mid}[1][\,]{%
+#1%
+\ifnum\currentgrouptype=16%
+\middle\vert\else\vert\fi%
+#1%
+}
 
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
@@ -141,9 +201,11 @@
 
 \input{titlepage}
 \input{chap0}
+\input{chap1}
 
 \nocite{bookc:folland99}
 \nocite{bookc:elstrod11}
+\nocite{www:mp:gruppenzwang7}
 
 \appendix
 \bibliographystyle{plaindin}

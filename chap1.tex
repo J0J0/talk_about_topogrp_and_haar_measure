@@ -1,0 +1,291 @@
+\chapter{Topologische Gruppen}
+Für eine Gruppe $G$ bezeichne stets $e$ das neutrale Element. Weiter werden wir
+im Folgenden die auftretenden Gruppen meist multiplikativ schreiben und dabei
+wie üblich das explizite Multiplikationszeichen unterdrücken. Das Inverse zu
+einem Element $a\in G$ bezeichnen wir mit $a^{-1}$.
+
+\begin{thDef}[Topologische Gruppe]
+    Eine Gruppe $(G,\cdot, e)$ ist eine \emph{topologische Gruppe}, wenn auf ihr
+    zusätzlich eine Topologie erklärt ist, für welche die Gruppenoperationen
+    \begin{alignat*}{2}
+        G \times G &\to G,  &\quad (a,b) &\mapsto ab
+        \\
+        G &\to G,           &\quad     a &\mapsto a^{-1}
+    \end{alignat*}
+    stetig sind. Dabei wird $G\times G$ mit der Produkttopologie versehen.
+\end{thDef}
+
+Sprechen wir im Folgenden davon, dass eine topologische Gruppe irgendeine
+topologische Eigenschaft besitzt, so beziehen wir diese immer auf den
+unterliegenden topologischen Raum.
+Ist $G$ eine Gruppe und sind $A,B\subset G$ Teilmengen von $G$ sowie $x\in G$
+ein Element von $G$, so benutzen wir außerdem folgende (intuitive) Notationen:
+\begin{thNotation} 
+    \begin{align*}
+        xA &\defeq \{ xa \Mid a\in A \},            &
+        Ax &\defeq \{ ax \Mid a\in A \},            \\
+        AB &\defeq \{ ab \Mid a\in A,\, b\in B \},  &
+        A^{-1} &\defeq \{ a^{-1} \Mid a\in A \}     %
+    \end{align*}
+\end{thNotation}
+
+Gilt für eine Teilmenge $A\subset G$ die Gleichheit $A=A^{-1}$, so nennen wir
+$A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an:
+\begin{BspList}
+\item
+    Eine beliebige Gruppe $G$ ist bezüglich der diskreten Topologie eine
+    topologische Gruppe. Diese ist dann trivialerweise eine LKH-Gruppe.
+    
+\item
+    Es sind (für $n\in\N$) $(\R^n,+),\; (\R\setminus\{0\},\cdot),\; 
+    (\R[>0], \cdot)$ topologische Gruppen bezüglich der Teilraumtopologie
+    induziert von der Standardtopologie auf $\R^n$ bzw. $\R$. Alle drei sind
+    lokalkompakt und hausdorffsch.
+
+\item
+    Bezüglich der Standardtopologie (d.\,h. der durch den Betrag induzierten
+    Topologie) auf $\C$ ist der Einheitskreis 
+    $\left\{ z\in\C \;\big\vert\; \abs{z}=1 \right\} \cong S^1 \subset \R^2$ mit
+    der Multiplikation (in $\C$) eine kompakte topologische Gruppe.
+
+\item
+    Betrachtet man zu $n\in\N$ die Gruppe $\matGL(n,\R)$ der
+    invertierbaren $(n\!\times\!n)$-Matrizen mit der von $\R^{n^2}$ induzierten
+    Topologie, so ist diese bezüglich der Matrizenmultiplikation eine
+    topologische Gruppe. Für die Untergruppen $\matSL(n,\R),\,\matO(n),\,\matSO(n)
+    \leq \matGL(n,\R)$ gilt: Alle sind abgeschlossen in $\matGL(n,\R)$ und
+    die letzteren beiden sogar kompakt.
+    
+    Diese Aussagen sieht man wie folgt ein:
+    \vspace{-3pt} \[    % UGLY
+        \det\colon\matGL(n,\R)\to\R^\times 
+    \vspace{-3pt} \] 
+    ist ein (surjektiver) stetiger Gruppenhomomorphismus und somit ist das
+    Urbild der abgeschlossenen Untergruppe $\{1\} \subset \R^\times$ (also
+    gerade $\matSL(n,\R)$) eine abgeschlossene Untergruppe von $\matGL(n,\R)$.
+    Weiter ist $\matO(n)$ abgeschlossen als Urbild der abgeschlossenen Menge
+    $\{0\} \subset \R^n$ unter der stetigen Abbildung $Q\mapsto Q\mt Q - E_n$
+    (wobei $E_n$ die $(n\!\times\!n)$-Einheitsmatrix bezeichnet). Mit $\matSO(n)
+    = \matSL(n,\R) \cap \matO(n)$ ist auch $\matSO(n)$ abgeschlossen.
+    Mit dem Satz von Heine-Borel folgt dann die Kompaktheit, denn $\matO(n)$ ist
+    außerdem beschränkt, da für $Q\in\matO(n)$ gilt: 
+    \[ \opnorm{Q}_2 = \sup_{\norm{x}_2=1} \norm{Qx}_2 
+        = \sup_{\norm{x}_2=1} \norm{x}_2 = 1
+    . \]
+    (Dabei bezeichnet $\opnorm{\,\cdot\,}_2$ die Operatornorm, induziert von der
+    euklidschen Norm.)
+    
+\item
+    Ein weiteres interessantes Beispiel ist die sogenannte
+    \emph{Krulltopologie}, für welche wir nur kurz den Anwendungszweck
+    beschreiben wollen: Hat man eine (nicht notwendigerweise endliche)
+    galois'sche Körpererweiterung $L/K$, so kann man auf
+    $\operatorname{Gal}(L/K)$ eine Topologie definieren, welche man
+    \emph{Krulltopologie} (nach Wolfgang Krull) nennt. Mit Hilfe dieser
+    topologischen Zusatzstruktur kann man dann den \emph{Hauptsatz der
+    Galoistheorie} auf \emph{unendliche Galoiserweiterungen} übertragen, indem man
+    \emph{abgeschlossene} Untergruppen der Galoisgruppe betrachtet.
+    Eine Definiton der Krulltopologie und Einführung in die unendliche
+    Galoistheorie kann in dem Artikel \enquote{Unendliche
+    Galoistheorie}\cite{www:mp:unendlichegaloistheorie} nachgelesen werden.
+\end{BspList}
+%
+Weitere Beispiele kann man Elstrod\cite[Kap.\,VIII,\,\S3,\,3.2]{bookc:elstrod11}
+entnehmen.
+%
+Bis auf Weiteres bezeichnet $G$ ab jetzt immer eine beliebige topologische
+Gruppe. Wir behandeln nun einige Eigenschaften topologischer Gruppen.
+\begin{thLemma}%
+    [Invertieren, Links- und Rechtsmultiplikation als Homöomorphismen]
+    \label{tg:homoeom}
+    \hfill\\
+    %
+    Sei $a\in G$. Die folgenden Abbildungen sind Homöomorphismen auf $G$:
+    \begin{alignat*}{3}
+        G &\to G,   &\quad     x &\mapsto x^{-1}
+        & \qquad\quad &\text{(Invertieren)}
+        \\
+        G &\to G,   &\quad     x &\mapsto ax
+        & &\text{(Linksmultiplikation mit $a$)}
+        \\
+        G &\to G,   &\quad     x &\mapsto xa
+        & &\text{(Rechtsmultiplikation mit $a$)}
+    \end{alignat*}
+\end{thLemma}
+
+\begin{proof}
+    Nach Definition einer topologischen Gruppe ist Invertieren eine stetige
+    Abbildung und offenbar ist diese zu sich selbst invers.
+    \\
+    Die Abbildung $\{a\}\times G\to G,\; (a,x)\mapsto ax$ ist stetig als
+    Einschränkung der (nach Definiton) auf $G$ stetigen Multiplikation, womit
+    auch
+    \[ \bigl( x\mapsto (a,x) \bigr) \circ \bigl( (a,x) \mapsto ax \bigr) 
+    \]
+    als Komposition stetiger Abbildungen stetig ist. Außerdem ist die
+    Linksmultiplikation mit~$a^{-1}$ offenbar eine Umkehrabbildung, welche nach
+    denselben Argumenten stetig ist. 
+    \\
+    Analog für die Rechtsmultiplikation mit~$a$.
+    \\
+\end{proof}
+
+Eine wichtige Folgerung daraus, welche wir oft verwenden werden, ohne es explizit
+zu nennen, ist:
+\begin{thKorollar}%
+    [Translate offener/abgeschlossener Mengen, Produkte mit offenen Mengen]
+    %
+    Sei $a\in G$ und seien $U\subset G$ offen, $V\subset G$ abgeschlossen und
+    $B\subset G$ beliebig.
+
+    Dann sind auch $aU$ und $Ua$ offen sowie $aV$ und $Va$ abgeschlossen.
+    Außerdem sind auch $B\mkern2muU$ und $UB$ offen.
+\end{thKorollar}
+
+\begin{proof}
+    Die ersten beiden Aussagen folgen unmittelbar aus \cref{tg:homoeom} und
+    der Tatsache, dass Homöomorphismen sowohl offen als auch abgeschlossen sind.
+    Für die letzte Aussage schreiben wir
+    \[ B\mkern2muU = \bigcup_{b\in B} bU \qqundqq UB = \bigcup_{b\in B} Ub, \]
+    wodurch wir erkennen, dass $B\mkern2muU$ und $UB$ als Vereinigungen offener
+    Mengen jeweils wieder offen sind. 
+    \\
+\end{proof}
+
+Aus den letzten beiden Resultaten erhalten wir insbesondere, dass wir für
+$a\in G$ und eine Umgebung $U\subset G$ von $e$ immer eine Umgebung $aU$ um $a$
+mit gleichen topologischen Eigenschaften wie $U$ erhalten. Da Umgebungen um $e$
+auch weiterhin eine große Rolle spielen werden, definieren wir:
+\begin{thDef}[Umgebungen von $e$]
+    Ist $G$ eine topologische Gruppe, so bezeichne
+    \[ \frakU \defeq \{ U\subset G \Mid \text{$U$ ist Umgebung von $e$} \} \]
+    die Menge aller Umgebungen von $e$.
+\end{thDef}
+
+Wir halten nun einige Aussagen über topologische Gruppen, welche wir immer
+wieder benutzen werden, gemeinsam fest:
+\begin{thLemma}[Allgemeine Aussagen über topologische Gruppen]\label{tg:basics}
+    \hfill
+    \begin{enumerate}[a)]
+        \item \label{tg:basics:symV}
+            Für alle $U\in\frakU$ existiert ein symmetrisches $V\in\frakU$ mit
+            $V\subset U$.
+        \item \label{tg:basics:VV}
+            Für alle $U\in\frakU$ existiert ein $V\in\frakU$ mit $VV\subset U$.
+        \item \label{tg:basics:symVV}
+            Für alle $U\in\frakU$ existiert ein symmetrisches $V\in\frakU$ mit
+            $VV\subset U$.
+        \item \label{tg:basics:closureH}
+            Ist $H\leq G$ eine Untergruppe, so auch ihr (topologischer) Abschluss
+            $\setclosure{H}$.
+        \item \label{tg:basics:openHclosed}
+            Ist $H\leq G$ eine offene Untergruppe, so ist $H$ auch
+            abgeschlossen.
+        \item \label{tg:basics:KKcompact}
+            Sind $K_1,K_2\subset G$ kompakt, so auch $K_1K_2$.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    Seien $U\in\frakU$ und $H\leq G$ beliebig.
+    \begin{enumerate}[(a)]
+        \item
+            Da $e^{-1} = e$ gilt und Invertieren stetig ist, ex. nach der
+            lokalen Charakterisierung von Stetigkeit eine Umgebung $T\in\frakU$,
+            so dass $T^{-1} \subset U$ gilt.
+            Dann leistest $V \defeq T \cap T^{-1}$ offenbar das Gewünschte.
+        
+        \item
+            Es gilt $e\mkern2mu e=e$ und weil die Multiplikation stetig ist, ex. wieder
+            eine Umgebung $T\subset G\times G$ von $(e,e)\in G\times G$, so dass 
+            %$\bigl( G\times G \to G,\; (a,b)\mapsto ab \bigr)(T) \subset U$ gilt.
+            für alle $(t_1,t_2)\in T$ das Produkt $t_1t_2$ in $U$ liegt.
+            Nach Definition der Produkttopologie gibt es also
+            $T_1,T_2\in\frakU$, so dass $T_1\times T_2 \subset T$ erfüllt ist.
+            Setzte dann $V\defeq T_1\cap T_2$, dann gilt offenbar $VV\subset U$.
+
+        \item
+            Wähle zunächst eine Umgebung $V'\in\frakU$ nach
+            \ref{tg:basics:VV}. Wähle dann nach \ref{tg:basics:symV} eine
+            symmetrische Umgebung $V\in\frakU$ mit $V\subset V'$. Dann gilt
+            natürlich wegen $V\subset V'$: $VV \subset V'V' \subset U$.
+
+        \item
+            Wir sehen zunächst ein, dass die Abbildung
+            \begin{align*}
+                \phi\colon G\times G &\to G,    \\
+                            (a,b)    &\mapsto ab^{-1}
+            \end{align*}
+            als Komposition stetiger Abbildungen auch stetig ist. Wir verwenden
+            nun das bekannte Kriterium, dass $\setclosure H$ eine Untergruppe
+            von $G$ ist, wenn für alle $x,y\in\setclosure{H}$ auch
+            $xy^{-1}\in\setclosure{H}$ gilt.
+            
+            Seien nun also $x,y \in \setclosure{H}$ beliebig und sei $U\subset G$
+            eine beliebige Umgebung von $xy^{-1}$. Weil obiges $\phi$ stetig
+            ist und offenbar $\phi(x,y)=xy^{-1}$ gilt, existiert eine Umgebung
+            $T\subset G$ von $(x,y)$ derart, dass $\phi(T) \subset U$ gilt. Nach
+            Definition der Produkttopologie gibt es dann Umgebungen $T_1$ bzw.
+            $T_2$ von $x$ bzw. $y$, so dass $(x,y) \in T_1\times T_2 \subset T$
+            erfüllt ist. Wegen $x,y\in\setclosure{H}$ erhalten wir: 
+            $T_1\cap H\neq\emptyset$ und $T_2\cap H\neq\emptyset$. Es folgt
+            $\phi(T_1\times T_2)=T_1 T_2^{-1}\cap H\neq\emptyset$ und damit auch
+            $U\cap H\neq\emptyset$, womit $xy^{-1}$ im Abschluss von $H$ liegt. 
+
+        \item
+            Sei $H$ zusätzlich offen. Wir betrachten nun die Linksnebenklassen
+            $gH$ für $g\in G$. Da $H$ offen ist, ist auch $gH$ offen für alle
+            $g\in G$ und bekannterweise kann $G$ als disjunkte Vereinigung aller
+            Linksnebenklassen geschrieben werden. Damit gilt:
+            \[ \bigdotcup_{x\in G\setminus\{e\}} xH \]
+            ist offen als Vereinigung offener Mengen und somit ist das
+            Komplement in $G$, also gerade $H$, abgeschlossen.
+
+        \item
+            Für kompakte Teilmengen $K_1,K_2\subset G$ ist auch $K_1\times K_2$
+            in $G\times G$ bezüglich der Produkttopologie kompakt und damit
+            folgt die Kompaktheit von $K_1K_2$ daraus, dass dies das Bild von
+            $K_1\times K_2$ unter der stetigen Gruppenmultiplikation ist.
+    \end{enumerate}
+\end{proof}
+
+
+%\begin{thDef}(Links-/Rechtstranslation)
+%    Sei $G$ eine topologische Gruppe und $f$ eine auf $G$ definierte Funktion.
+%\end{thDef}<++>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
