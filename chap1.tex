@@ -1,4 +1,5 @@
 \chapter{Topologische Gruppen}
+\section{Definition und Eigenschaften}
 Für eine Gruppe $G$ bezeichne stets $e$ das neutrale Element. Weiter werden wir
 im Folgenden die auftretenden Gruppen meist multiplikativ schreiben und dabei
 wie üblich das explizite Multiplikationszeichen unterdrücken. Das Inverse zu
@@ -57,14 +58,13 @@ $A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an
     die letzteren beiden sogar kompakt.
     
     Diese Aussagen sieht man wie folgt ein:
-    \vspace{-3pt} \[    % UGLY
-        \det\colon\matGL(n,\R)\to\R^\times 
-    \vspace{-3pt} \] 
+    \[ \det\colon\matGL(n,\R)\to\R^\times 
+    \] 
     ist ein (surjektiver) stetiger Gruppenhomomorphismus und somit ist das
     Urbild der abgeschlossenen Untergruppe $\{1\} \subset \R^\times$ (also
     gerade $\matSL(n,\R)$) eine abgeschlossene Untergruppe von $\matGL(n,\R)$.
     Weiter ist $\matO(n)$ abgeschlossen als Urbild der abgeschlossenen Menge
-    $\{0\} \subset \R^n$ unter der stetigen Abbildung $Q\mapsto Q\mt Q - E_n$
+    $\{0\} \subset \R^{n\times n}$ unter der stetigen Abbildung $Q\mapsto Q\mt Q - E_n$
     (wobei $E_n$ die $(n\!\times\!n)$-Einheitsmatrix bezeichnet). Mit $\matSO(n)
     = \matSL(n,\R) \cap \matO(n)$ ist auch $\matSO(n)$ abgeschlossen.
     Mit dem Satz von Heine-Borel folgt dann die Kompaktheit, denn $\matO(n)$ ist
@@ -122,8 +122,8 @@ Gruppe. Wir behandeln nun einige Eigenschaften topologischer Gruppen.
     auch
     \[ \bigl( x\mapsto (a,x) \bigr) \circ \bigl( (a,x) \mapsto ax \bigr) 
     \]
-    als Komposition stetiger Abbildungen stetig ist. Außerdem ist die
-    Linksmultiplikation mit~$a^{-1}$ offenbar eine Umkehrabbildung, welche nach
+    als Komposition stetiger Abbildungen stetig ist. Außerdem ist offenbar die
+    Linksmultiplikation mit $a^{-1}$ eine Umkehrabbildung, welche nach
     denselben Argumenten stetig ist. 
     \\
     Analog für die Rechtsmultiplikation mit~$a$.
@@ -134,6 +134,7 @@ Eine wichtige Folgerung daraus, welche wir oft verwenden werden, ohne es explizi
 zu nennen, ist:
 \begin{thKorollar}%
     [Translate offener/abgeschlossener Mengen, Produkte mit offenen Mengen]
+    \label{tg:translates}
     %
     Sei $a\in G$ und seien $U\subset G$ offen, $V\subset G$ abgeschlossen und
     $B\subset G$ beliebig.
@@ -156,7 +157,7 @@ Aus den letzten beiden Resultaten erhalten wir insbesondere, dass wir für
 $a\in G$ und eine Umgebung $U\subset G$ von $e$ immer eine Umgebung $aU$ um $a$
 mit gleichen topologischen Eigenschaften wie $U$ erhalten. Da Umgebungen um $e$
 auch weiterhin eine große Rolle spielen werden, definieren wir:
-\begin{thDef}[Umgebungen von $e$]
+\begin{thDef}[Umgebungen von \texorpdfstring{$e$}{e}]
     Ist $G$ eine topologische Gruppe, so bezeichne
     \[ \frakU \defeq \{ U\subset G \Mid \text{$U$ ist Umgebung von $e$} \} \]
     die Menge aller Umgebungen von $e$.
@@ -237,7 +238,7 @@ wieder benutzen werden, gemeinsam fest:
             $gH$ für $g\in G$. Da $H$ offen ist, ist auch $gH$ offen für alle
             $g\in G$ und bekannterweise kann $G$ als disjunkte Vereinigung aller
             Linksnebenklassen geschrieben werden. Damit gilt:
-            \[ \bigdotcup_{x\in G\setminus\{e\}} xH \]
+            \[ \bigcup_{x\in G\setminus H} xH \]
             ist offen als Vereinigung offener Mengen und somit ist das
             Komplement in $G$, also gerade $H$, abgeschlossen.
 
@@ -248,6 +249,195 @@ wieder benutzen werden, gemeinsam fest:
             $K_1\times K_2$ unter der stetigen Gruppenmultiplikation ist.
     \end{enumerate}
 \end{proof}
+
+Meist wünscht man sich von der Topologie einer Gruppe $G$, dass diese
+hausdorffsch ist. In vielen Anwendungen wird dies sowieso der Fall sein, aber
+falls nicht, so gehen wir nun kurz darauf ein, wie wir diesen Mangel mit einer
+recht einfachen Konstruktion beheben können. Zunächst stellen wir jedoch fest,
+dass jede topologische Gruppe das Trennungsaxiom~$T_3$ erfüllt; dafür benutzen
+wir das folgende Lemma:
+\begin{thLemma}%
+    [Charakterisierung von \texorpdfstring{$T_3$}{T3} durch Umgebungsbasen]
+    \label{tg:t3basen}
+    %
+    Ist $X$ ein topologischer Raum, so erfüllt $X$ genau dann das
+    Trennunsaxiom~$T_3$, wenn jeder Punkt aus $X$ eine Umgebungsbasis aus
+    abgeschlossenen Mengen besitzt, d.\,h. wenn gilt:
+    \\
+    Für alle $x\in X$ und alle Umgebungen $U$ von $x$ existiert eine
+    abgeschlossene Umgebung $V$ von $x$ mit $x\in V \subset U$.
+\end{thLemma}
+Der Beweis ist einfach und wird an dieser Stelle dem Leser zur Übung überlassen.
+% TODO: Buchreferenz suchen und einfügen
+
+\begin{thLemma}[Topologische Gruppen erfüllen \texorpdfstring{$T_3$}{T3}]
+    Ist $G$ eine topologische Gruppe, so genügt die unterliegende Topologie von
+    $G$ dem Trennungsaxiom~$T_3$.
+\end{thLemma}
+
+\begin{proof}
+    Sei $U\in\frakU$, dann gibt es nach \mycref{tg:basics:symVV} ein
+    symmetrisches $V\in\frakU$, so dass $VV\subset U$ gilt. Wir zeigen nun, dass
+    dann auch $\setclosure{V}$ in $U$ enthalten ist. Sei also
+    $x\in\setclosure{V}$. Dann gilt $x\in xV$ und wegen $x\in\setclosure{V}$ ist
+    der Schnitt von $xV$ mit $V$ nicht leer, d.\,h es gibt $v_1,v_2\in V$ mit
+    $xv_1 = v_2$. Daraus folgt aber sofort: $x = v_2v_1^{-1} \in VV^{-1} = VV
+    \subset U$. Also gilt $e\in V \subset \setclosure{V} \subset U$.
+    \\
+    Wie wir schon zuvor angemerkt haben, überträgt sich diese Eigenschaft nun
+    auf alle Punke $g\in G$, denn zu einer Umgebung $W$ von $g$ können wir
+    $g^{-1}W\in\frakU$ betrachten und dann die abgeschlossene Umgebung durch
+    Linksmultiplikation mit $g$ wieder zu einer Umgebung um $g$ machen. 
+    \\
+    Mit \cref{tg:t3basen} folgt nun die Behauptung.
+    \\
+\end{proof}
+
+Da in topologischen Räumen, die $T_3$ erfüllen, die Trennungsaxiome $T_0$, $T_1$
+und $T_2$ äquivalent sind (einfache Rechnung), erhalten wir somit:
+\begin{thKorollar}%
+    [Äquivalenz von \texorpdfstring{$T_0$, $T_1$ und $T_2$}{T0, T1 und T2}
+     bei topologischen Gruppen]
+    %
+    Eine topologische Gruppe, die $T_0$ oder $T_1$ erfüllt, 
+    ist schon hausdorffsch. 
+    (Umgekehrt impliziert $T_2$ sowieso immer $T_1$ und $T_1$ immer $T_0$.)
+\end{thKorollar}
+
+Sollte eine topologische Gruppe~$G$ noch nicht hausdorffsch sein, so können wir
+$G$ durch eine geeignete Quotientengruppe ersetzen und mit dieser
+weiterarbeiten. Für eine Untergruppe $H$ von $G$ sei also $G/H$ die Menge der
+Linksnebenklassen und $\pi\colon G \to G/H,\; g\mapsto gH$ die kanonische
+Projektion. Dann statten wir $G/H$ mit der Quotiententopologie aus, d.\,h.
+$U'\subset G/H$ ist genau dann offen, wenn $\pi^{-1}(U') \subset G$ offen in $G$
+ist, wodurch wir wieder einen topologischen Raum erhalten. (Achtung: $G/H$
+muss zunächst keine Gruppe bilden; dazu muss $H$ zusätzlich ein Normalteiler
+sein!) Aus \cref{tg:translates} folgt, dass $\pi$ eine offene Abbildung ist,
+denn: Sei $U \subset G$ offen, dann ist $\pi^{-1}\bigl( \pi(U) \bigr)
+= \pi^{-1}\bigl( \{ uH \Mid u\in U \} \bigr) = UH$, was offen in $G$ ist.
+Wir können nun Folgendes zeigen:
+%
+\begin{thLemma}[Topologische Gruppen und Quotientenräume]
+    \label{tg:quot}
+    %
+    Sei $H$ eine Untergruppe der topologischen Gruppe $G$.
+    %
+    \begin{enumerate}[a)]
+        \item\label{tg:quot:hausdorff}
+            Ist $H$ abgeschlossen, so ist $G/H$ hausdorffsch.
+        \item\label{tg:quot:lcompact}
+            Ist $G$ lokalkompakt, so auch $G/H$.
+        \item\label{tg:quot:topogrp}
+            Ist $H$ ein Normalteiler von $G$, so ist $G/H$ wieder eine
+            topologische Gruppe.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}\hfill
+    \begin{enumerate}[(a)]
+        \item
+            Sei also $H\leq G$ abgeschlossen. Seien $x,y\in G$ mit 
+            $xH, yH\in G/H$, so dass $xH\neq yH$. Da $\pi$ offen ist,
+            genügt es zu zeigen, dass
+            wir Umgebungen $U,V$ von $x$ bzw. $y$ in $G$ finden können, so dass
+            $\pi(U)\cap\pi(V)=\emptyset$ gilt. Wegen $xH\neq yH$ gilt auch
+            $x\notin yH$ und somit $e\notin yHx^{-1}$. Weil $H$ abgeschlossen
+            ist, ist auch $yHx^{-1}$ abgeschlossen und es gilt 
+            $e\in G\setminus (yHx^{-1})$, wobei letztere Menge offen ist. Nach
+            \mycref{tg:basics:symVV} gibt es somit ein symmetrisches
+            $T\in\frakU$ mit $TT \subset G\setminus (yHx^{-1})$, also
+            insbesondere $TT \cap yHx^{-1} = \emptyset$ bzw.
+            $H \cap (y^{-1} TT x) = \emptyset$~~$(\ast)$.
+            
+            Wir setzen nun $U \defeq Tx$ und $V\defeq Ty$ und behaupten, dass
+            diese Umgebungen obige Forderung erfüllen. Angenommen der Schnitt
+            von $\pi(Tx)$ und $\pi(Ty)$ ist nicht leer. Dann gibt es 
+            $t_1,t_2\in T$ und $h_1,h_2\in H$, so dass $t_1xh_1 = t_2yh_2$ gilt.
+            Nach Umformung erhalten wir: $h_2h_1^{-1} = y^{-1}t_2^{-1} t_1 x$.
+            Da $H$ eine Untergruppe ist, gilt natürlich $h_2h_1^{-1} \in H$, und
+            da $T$ symmetrisch ist, ist auch
+            $y^{-1}t_2^{-1} t_1 x \in y^{-1}TTx$ wahr. Dies is aber ein
+            Widerspruch zu $(\ast)$. Also muss doch $\pi(U)\cap\pi(V)=\emptyset$
+            gelten, was die Behauptung zeigt.
+            
+        \item
+            Sei $xH\in G/H$ und sei $K\in\frakU$ eine kompakte Umgebung von $e$
+            in $G$. Dann ist auch $xK$ und wegen der Stetigkeit von $\pi$ auch
+            $\pi(xK)$ kompakt und letzteres ist eine Umgebung von $\pi(x)=xH$ in
+            $G/H$.
+            
+        \item
+            Wegen $H\triangleleft G$ ist $G/H$ wieder eine Gruppe, welche wir
+            wie zuvor mit der Quotiententopologie als topologischen Raum
+            betrachten. Es bleibt zu zeigen, dass die Gruppenoperationen auf
+            $G/H$ stetig sind.
+            
+            Seien dazu $xH,yH\in G/H$ und sei $U'\subset G/H$ eine Umgebung von
+            $xyH \in G/H$. Weil $\pi$ stetig ist, gibt es dann eine Umgebung
+            $U\subset G$ von $xy\in G$, so dass $\pi(U)$ Teilmenge von $U'$ ist.
+            Nach Definiton der Produkttopologie und der Stetigkeit der
+            Multiplikation in $G$ existieren nun Umgebungen $V_x$ bzw. $V_y$ von
+            $x$ bzw. $y$, so dass $V_xV_y \subset U$ gilt. Dann sind $\pi(V_x),
+            \pi(V_y)$ Umgebungen von $xH$ bzw. $yH$ derart, dass
+            $\pi(V_x)\,\pi(V_y)\subset U'$ erfüllt ist (womit die Multiplikation
+            in $G/H$ stetig ist), denn es gilt:
+            \[ \pi(V_x)\,\pi(V_y) = \{ v_xH \Mid v_x\in V_x \} \, \{ v_yH \Mid
+                v_y\in V_y \} = \{ v_xv_yH \Mid (v_x,v_y)\in V_x\times V_y \}
+            \]
+            und nach Konstruktion gilt $\pi(V_xV_y) \subset \pi(U) \subset U'$.
+            
+            Sei erneut $xH\in G/H$ und nun $U'\subset G/H$ eine Umgebung
+            von $xH$. Dann gibt es wegen der Stetigkeit von $\pi$ wieder eine
+            Umgebung $U\subset G$ von $x$, so dass $\pi(U)$ in $U'$ enthalten
+            ist. Wegen der Stetigkeit von Invertieren in $G$ gibt es eine
+            Umgebung $V\subset G$ von $x^{-1}$, so dass $V^{-1} \subset U$.
+            Dann gilt: $\pi(V)$ ist eine Umgebung von $x^{-1}H$ in $G/H$ und
+            $\pi(V)^{-1} \subset U'$, denn:
+            \[ \pi(V)^{-1} = \{ vH \Mid V \}^{-1} = \{ \tilde{v}H \Mid
+                \tilde{v}\in V^{-1} \} = \pi(V^{-1}) \subset \pi(U) \subset U' 
+            \]
+    \end{enumerate}
+\end{proof}
+
+Wir erhalten daraus:
+\begin{thKorollar}%
+    [\enquote{Hausdorffizierung} topologischer Gruppen]
+    \label{tg:hausdorffizierung}
+    %
+    Ist $G$ eine (lokalkompakte) topologische Gruppe, welche \emph{nicht}
+    hausdorffsch ist, so erhalten wir mittels $G/\setclosure{\{e\}}$ eine
+    hausdorffsche (lokalkompakte) topologische Gruppe.
+\end{thKorollar}
+
+\begin{proof}
+    Sei $H\defeq \setclosure{\{e\}}$. 
+    Zunächst ist $H$ wegen \mycref{tg:basics:closureH} eine Untergruppe von $G$.
+    Nach \mycref{tg:quot:hausdorff} ist somit $G/H$ hausdorffsch, da $H$
+    abgeschlossen ist, und nach \mycref{tg:quot:lcompact} ist $G/H$ auch
+    lokalkompakt, falls $G$ lokalkompakt ist. Es bleibt zu zeigen, dass $H$ ein
+    Normalteiler von $G$ ist.
+    \\
+    Angenommen $H$ ist kein Normalteiler von $G$. Dann gibt es ein $g\in G$,
+    so dass $gHg^{-1}$ keine Teilmenge von $H$ ist. Weil $H$ abgeschlossen ist,
+    ist auch $gHg^{-1}$ abgeschlossen und wir erhalten somit eine neue
+    Untergruppe $H \cap (gHg^{-1})$ von $G$, welche auch abgeschlossen ist.
+    Diese wäre dann eine echte Teilmenge von $H$, was im Widerspruch zur
+    der Tatsache steht, dass $H$ offensichtlich die (bezüglich Inklusion)
+    kleinste abgeschlossene Untergruppe von $G$ ist. Also war die Annahme falsch
+    und es muss schon $H\triangleleft G$ gelten.
+    \\
+\end{proof}
+
+Diese Folgerung erlaubt es uns also, in Zukunft immer davon auszugehen, dass die
+unterliegende Topologie von $G$ hausdorffsch ist, denn sonst bilden wir einfach
+$G/\setclosure{\{e\}}$ und arbeiten damit weiter. (Betrachtet man Borel-messbare
+Funktionen auf $G$, so kann dieser Schritt insbesondere dadurch gerechtfertigt
+werden, dass man Folgendes zeigen kann: Ist $f$ eine Borel-messbare Funktion auf
+$G$, so ist $f$ konstant auf den (Links-)Nebenklassen von $\setclosure{\{e\}}$.
+D.\,h. effektiv ist $f$ dann sowieso eine Funktion auf $G/H$.)
+% ^ TODO: Buchreferenz suchen und hinzufügen
+
+
 
 
 %\begin{thDef}(Links-/Rechtstranslation)
