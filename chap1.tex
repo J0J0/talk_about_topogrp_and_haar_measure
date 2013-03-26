@@ -300,7 +300,7 @@ und $T_2$ äquivalent sind (einfache Rechnung), erhalten wir somit:
      bei topologischen Gruppen]
     %
     Eine topologische Gruppe, die $T_0$ oder $T_1$ erfüllt, 
-    ist schon hausdorffsch. 
+    ist schon hausdorffsch und damit insbesondere ein \emph{regulärer Raum}. 
     (Umgekehrt impliziert $T_2$ sowieso immer $T_1$ und $T_1$ immer $T_0$.)
 \end{thKorollar}
 
@@ -438,11 +438,133 @@ D.\,h. effektiv ist $f$ dann sowieso eine Funktion auf $G/H$.)
 % ^ TODO: Buchreferenz suchen und hinzufügen
 
 
+\section{(Stetige) Funktionen}
+In diesem Abschnitt werfen wir einen kurzen Blick auf die Welt der (stetigen)
+Funktionen auf einer topologischen Gruppe. Die Begriffe, die wir gleich
+definieren werden, spielen unter anderem eine bedeutende Rolle beim Beweis der
+Existenz und Eindeutigkeit des Haar-Maßes (siehe später). % TODO: verlinken
+Auch in diesem Abschnitt sei $G$ eine beliebige topologische Gruppe.
 
+\begin{thNotation}[Funktionenräume, Träger]
+    Es bezeichne $\continuous(G)$ den Raum der komplexwertigen, stetigen
+    Funktionen auf $G$. Ist $f\in \continuous(G)$, so bezeichnen wir mit 
+    $\supp(f) \defeq \setclosure{ \{ x\in G \Mid f(x) \neq 0 \} }$
+    den Träger von $f$ und mit $\contcomp(G)$ denjenigen Teilraum von
+    $\continuous(G)$, der alle stetigen Funktionen mit kompaktem Träger umfasst.
+    Weiter setzen wir
+    \[ \contcompplus(G) \defeq \{ f\in \contcomp(G) \Mid 
+        f \geq 0 \;\wedge\; \supnorm{f} > 0 \}
+    . \]
+    (In $f\geq 0$ fordern wir implizit, dass $f$ reellwertig ist.)
+    Besteht keine Verwechslungsgefahr, so schreiben wir außerdem kurz
+    $\contcompplus$ für $\contcompplus(G)$.
+\end{thNotation}
 
-%\begin{thDef}(Links-/Rechtstranslation)
-%    Sei $G$ eine topologische Gruppe und $f$ eine auf $G$ definierte Funktion.
-%\end{thDef}<++>
+\begin{thDef}[Translation von Funktionen]
+    Ist $f$ eine Funktion auf $G$ und $y\in G$, so definieren wir die 
+    \emph{Linkstranslation von $f$ mit $y$} durch
+    \[ L_y f \defeq \bigl( x\mapsto f(y^{-1}x) \bigr) \]
+    und die \emph{Rechtstranslation von $f$ mit $y$} durch
+    \[ R_y f \defeq \bigl( x\mapsto f(xy) \bigr) . \]
+\end{thDef}
+%
+Der Sinn der Invertierung von $y$ bei $L_y$ ergibt sich, sobald man Verkettungen
+von Translationen betrachtet. Nun gilt nämlich für $y,z\in G$:
+\[  L_y L_z f = L_{yz} f  \qqundqq  R_y R_z f = R_{yz} f  , \]
+d.\,h. die Abbildungen $G\ni y \mapsto L_y$ und $G\ni y\mapsto R_y$ sind
+Gruppenhomomorphismen von $G$ in die Gruppe der Linkstranslationen auf $G$.
+
+\emph{Achtung:} In der Literatur wird dies nicht einheitlich eingeführt. Bei manchen
+Autoren wird $y$ bei Linkstranslationen \emph{nicht} invertiert, was aber zur
+Folge hat, dass die Formeln aus dem vorherigen Absatz verändert werden müssen.
+
+\begin{thDef}[Links-/Rechts-gleichmäßig stetig]
+    Sei $f$ eine komplexwertige Funktion auf $G$. 
+    Wir nennen $f$ dann \emph{links-gleichmäßig stetig} (bzw.
+    \emph{rechts-gleichmäßig stetig}), wenn es für alle $\epsilon\in\R[>0]$ eine
+    Umgebung $U\in\frakU$ von $e$ gibt, so dass für alle $y\in U$ die
+    Ungleichung $\supnorm{f-L_y f} < \epsilon$ 
+    (bzw. $\supnorm{f-R_yf} < \epsilon$) erfüllt ist.
+\end{thDef}
+
+\emph{Achtung:} Auch hier verfahren die Autoren unterschiedlich. Manchmal werden beide
+Begriffe genau vertauscht eingeführt.
+
+% TODO: ggf. Hinweis und Literaturverweis auf 'uniforme Strukturen' einfügen
+
+\begin{thLemma}%
+    [Gleichmäßige Stetigkeit von stetigen Funktionen mit kompaktem Träger]
+    \label{tg:unicont}
+    %
+    Ist $f\in\contcomp(G)$, so ist $f$ sowohl links- als auch rechts-gleichmäßig
+    stetig in obigem Sinne.
+\end{thLemma}
+
+\begin{proof}
+    Sei $f\in\contcomp(G)$ und $\epsilon\in\R[>0]$.
+    Da beide Begriffe analog definiert sind, genügt es, eine der Behauptungen zu
+    beweisen; die andere verläuft dann absolut analog. Wir zeigen also nur, dass
+    $f$ rechts-gleichmäßig stetig ist.
+    \\
+    Sei $K\defeq\supp(f)$. Zu jedem $x\in K$ betrachte dann die Abbildung
+    \[ G\ni y \mapsto \abs{ f(x)-f(xy) } .\]
+    Diese ist stetig als Komposition stetiger Abbildungen, und $e$ wird offenbar
+    auf $0$ abgebildet. Daher existiert ein $U_x\in\frakU$, so dass
+    \[  \forAll_{y\in U_x}\qquad
+        \abs{f(x)-f(xy)} < \frac{\epsilon}{2}
+        \tag{$\ast$}\label{tg:unicont:p:haveineq}
+    \]    
+    erfüllt ist. Zu jedem $U_x$ finden wir dann nach \mycref{tg:basics:symVV}
+    ein symmetrisches $V_x\in\frakU$ mit $V_x \subset V_x V_x \subset U_x$.
+    Offenbar gilt dann:
+    \[  K \subset \bigcup_{x\in K} xV_x \qqtextqq{und somit schon}
+        K \subset \bigcup_{i=1}^n  x_iV_i 
+    \]
+    für endlich viele $x_i$, da $K$ nach Voraussetzung kompakt ist.
+    Setze nun
+    \[ U \defeq \bigcap_{i=1}^n V_i \,, \]
+    dann ist $U\in\frakU$ und wir behaupten, dass $U$ die gesuchte Umgebung ist,
+    d.\,h., dass für alle $y\in U$ und alle $x\in G$ gilt: 
+    \[ \abs{ f(x) - f(xy) } < \epsilon  
+        \tag{$\star$}\label{tg:unicont:p:wantineq}
+    \]
+    Um dies zu zeigen, unterscheiden wir mehrere Fälle. Zunächst gilt
+    \eqref{tg:unicont:p:wantineq} offensichtlich, wenn weder $x$, noch $xy$ in $K$
+    liegen. Sei nun also $x\in K$. Dann gibt es ein $j\in\{1,\ldots,n\}$, so
+    dass $x\in x_jV_j$ und damit $x_j^{-1}x \in V_j$ gilt. Außerdem erhalten
+    wir $xy = x_j(x_j^{-1}x)y \in x_jV_jV_j \subset x_jU_{x_j}$, denn $y$ ist
+    nach Definition von $U$ auch in $V_j$. Es folgt mit der Dreiecksungleichung:
+    \[ \abs{ f(x) - f(xy) } 
+        \leq \underbrace{ \abs{f(x_j) - f(xy)} }_{
+                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+                \text{ wegen } xy\in x_jU_{x_j} 
+             }
+          +  \underbrace{ \abs{f(x) - f(x_j)} }_{
+                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+                \text{ wähle } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
+             }
+        < \epsilon
+    \]
+    Also ist auch in diesem Fall \eqref{tg:unicont:p:wantineq} erfüllt.
+    Sei nun $x\notin K$, d.\,h. $f(x)=0$, und $xy\in K$, so dass wir uns noch um
+    $f(xy)$ kümmern müssen. Wieder muss es ein $j\in\{1,\ldots,n\}$ geben, so
+    dass $xy\in x_jV_j\subset x_jU_{x_j}$ und damit $x_j^{-1}xy\in V_j$ sowie 
+    $x_j^{-1}x\in V_jy^{-1} \subset V_j V_j \subset U_{x_j}$ gilt. 
+    Wir erhalten dann durch eine ähnliche Abschätzung die Gültigkeit von
+    \eqref{tg:unicont:p:wantineq}:
+    \[ \abs{ f(x) - f(xy) } = \abs{f(xy)}
+        \leq \underbrace{ \abs{f(x_j) - f(xy)} }_{
+                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+                \text{ wegen } xy\in x_jU_{x_j} 
+             }
+          +  \underbrace{ \abs{f(x_j)} }_{
+                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+                \text{ wähle } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
+             }
+        < \epsilon
+    \]
+\end{proof}
+
 
 
 
