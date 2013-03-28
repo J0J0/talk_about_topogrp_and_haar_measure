@@ -446,6 +446,8 @@ Existenz und Eindeutigkeit des Haar-Maßes (siehe später). % TODO: verlinken
 Auch in diesem Abschnitt sei $G$ eine beliebige topologische Gruppe.
 
 \begin{thNotation}[Funktionenräume, Träger]
+    \label{tg:notation:contcompsupp}
+    %
     Es bezeichne $\continuous(G)$ den Raum der komplexwertigen, stetigen
     Funktionen auf $G$. Ist $f\in \continuous(G)$, so bezeichnen wir mit 
     $\supp(f) \defeq \setclosure{ \{ x\in G \Mid f(x) \neq 0 \} }$
@@ -471,8 +473,9 @@ Auch in diesem Abschnitt sei $G$ eine beliebige topologische Gruppe.
 Der Sinn der Invertierung von $y$ bei $L_y$ ergibt sich, sobald man Verkettungen
 von Translationen betrachtet. Nun gilt nämlich für $y,z\in G$:
 \[  L_y L_z f = L_{yz} f  \qqundqq  R_y R_z f = R_{yz} f  , \]
-d.\,h. die Abbildungen $G\ni y \mapsto L_y$ und $G\ni y\mapsto R_y$ sind
-Gruppenhomomorphismen von $G$ in die Gruppe der Linkstranslationen auf $G$.
+d.\,h. die Abbildungen $G\ni y \mapsto L_y$ bzw. $G\ni y\mapsto R_y$ sind
+Gruppenhomomorphismen von $G$ in die Gruppe der Links- bzw. Rechtstranslationen
+auf $G$.
 
 \emph{Achtung:} In der Literatur wird dies nicht einheitlich eingeführt. Bei manchen
 Autoren wird $y$ bei Linkstranslationen \emph{nicht} invertiert, was aber zur
@@ -565,6 +568,179 @@ Begriffe genau vertauscht eingeführt.
     \]
 \end{proof}
 
+(Anstatt sich darauf zu berufen, dass der Beweis analog abläuft, kann man auch
+mit einem Trick argumentieren, den man bei
+Elstrod\cite[Kap.\,VIII,\;\S3,\;3.8]{bookc:elstrod11}
+findet: Man lasse die Topologie auf $G$ unverändert, aber betrachte die
+umgekehrte Multiplikation: $x\bullet y \defeq yx$. Man überlegt sich dann, dass
+man dadurch die für \enquote{rechts"~} bewiesenen Aussagen auf \enquote{links"~}
+übetragen kann und umgekehrt~\ldots)
+
+Für spätere Zwecke halten wir noch folgende Aussage fest:
+\begin{thLemma}%
+    [\texorpdfstring{$\contcomp$}{Cc}-Abbildungen unter Translationen]
+    \label{tg:Cctranslat}
+    %
+    Ist $f\in\contcomp(G)$, so ist für alle $y\in G$ auch
+    $L_yf\in\contcomp(G)$ und $R_yf\in\contcomp(G)$. 
+\end{thLemma}
+
+\begin{proof}
+    Es seien $y\in G$,
+    $\phi(x) \defeq y^{-1}x$ und $\psi(x) \defeq xy$.
+    Dann gilt
+    \[  L_y f = f \circ \phi 
+        \qqundqq
+        R_y f = f \circ \psi
+    . \]
+    Nach \cref{tg:homoeom} sind $\phi$ und $\psi$ Homöomorphismen und daher
+    folgt die Behauptung aus der (einfach nachzurechnenden) Tatsache, dass dann
+    $\supp(f\circ\phi) = \phi^{-1}\bigl(\supp(f)\bigr)$ für $\phi$ und analog 
+    für $\psi$ gilt, wobei Kompakta wegen der Stetigkeit der Umkehrabbildung wieder auf
+    Kompakta abgebildet werden.
+    \\
+\end{proof}
+
+
+\section{Invariante Maße und Linearformen}
+Von nun an beschäftigen wir uns hauptsächlich mit LKH-Gruppen. Für den Rest des
+Abschnitts sei $G$ eine solche Gruppe.
+
+\begin{thDef}[Links-/Rechtsinvariante(s) Maß / Linearform]\hfill\\
+    Wir nennen ein Maß $\mu\colon \borelsigmaalg(G) \to [0,\infty]$
+    \emph{linksinvariant} (bzw. \emph{rechtsinvariant}), 
+    wenn für alle $x\in G$ und alle $B\in\borelsigmaalg(G)$ gilt:
+    \[  \mu(xB) = \mu  
+        \qquad\qquad\bigl(\text{bzw. } 
+        \mu(Bx) = \mu(B) 
+        \,\bigr)
+    \]
+    Weiter nennen wir ein lineares Funktional $I$ auf $\contcomp(G)$ 
+    \emph{linksinvariant} (bzw. \emph{rechtsinvariant}),
+    wenn für alle $y\in G$ und alle $f\in\contcomp(G)$ gilt:
+    \[  I(L_yf) = I(f) 
+        \qquad\qquad\bigl(\text{bzw. } 
+        I(R_yf) = I(f)
+        \,\bigr)
+    \]
+\end{thDef}
+
+\medskip
+Der Vollständigkeit halber wiederholen wir (ohne Beweis) 
+ein paar Definition und Sätze, die wir im Folgenden und später im Existenz- und
+Eindeutigkeitsbeweis des Haar-Maßes  % TODO: verlinken
+benötigen werden.
+
+\begin{thDef}[Radon-Maß, lokal-endlich, von innen regulär]
+    \label{tg:def:radonmeasure}
+    Ein Radon-Maß $\mu$ auf einem topologischen Raum $X$ ist ein
+    \emph{lokal-endliches} Maß $\mu\colon\borelsigmaalg(X)\to[0,\infty]$, das
+    zusätzlich \emph{von innen regulär} ist.
+    Dabei bedeutet:
+    \begin{description}[align=left, 
+                        itemindent=15pt, 
+                        leftmargin=0pt, 
+                        itemsep=0pt,
+                        topsep=0.3\baselineskip]
+        \item[lokal-endlich:]
+            Für alle $y\in X$ ex. eine (offene) Umgebung $U\subset X$ von
+            $y$ mit $\mu(U) < \infty$.
+            %Für alle $x\in X$ gibt es eine (offene) Umgebung $U\subset X$ von
+            %$x$, so dass $\mu(U)$ endlich ist.
+        \item[von innen regulär:]
+            Für alle $B\in\borelsigmaalg(X)$ gilt:
+            $\mu(B) = \sup\{ \mu(K) \Mid K\subset B,\; K\text{ kompakt} \}$.
+    \end{description}
+\end{thDef}
+
+\begin{thSatz}[Allgemeine Transformationsformel]
+    \label{tg:trafo}
+    %
+    Seien $(X,\mathcal{A},\mu)$ ein Maßraum, $(Y,\mathcal{B})$ ein
+    messbarer Raum, $\phi\colon X\to Y$ eine $\mathcal{A}$-$\mathcal{B}$-messbare
+    Abbildung und $f\colon Y\to\C$ eine $\mathcal{B}$-messbare Funktion.
+    Ist dann $\mu_\phi \defeq \mu \circ \phi^{-1}$ das von $\mu$ und $\phi$
+    induzierte Bildmaß auf $(Y,\mathcal{B})$, dann gilt:
+    \\
+    Es ist $f$ genau dann bzüglich $\mu_\phi$ integrierbar, wenn $f\circ\phi$
+    bezüglich $\mu$ integrierbar ist und für die Integrale gilt:
+    \[ \int_Y f \dif{\mu_\phi} = \int_X f\circ\phi \dif{\mu} \]
+\end{thSatz}
+
+\begin{thSatz}%
+    [\enquote{\texorpdfstring{Kleiner $\contcomp$}{Cc}-Fubini} 
+        für lokalkompakte Hausdorffräume]
+    \label{tg:Ccfubini}
+    %
+    Seien $X,Y$ lokalkompakte Hausdorffräume und seien $\mu$ bzw. $\nu$
+    Radon-Maße auf $X$ bzw. $Y$. Dann gilt für alle $f\in\contcomp(X\times Y)$:
+    \[   \int_X \int_Y f(x,y) \dif{\nu(y)} \dif{\mu(x)}
+        =\int_Y \int_X f(x,y) \dif{\mu(x)} \dif{\nu(y)}
+    \]
+    Oder kurz auch: $\iint f \dif\nu\dif\mu = \iint f \dif\mu\dif\nu$.
+\end{thSatz}
+
+\begin{thSatz}[Riesz'scher Darstellungssatz]
+    \label{tg:riesz}
+    %
+    Ist $X$ ein lokalkompakter Hausdorffraum und $I$ ein positives lineares
+    Funktional auf
+    $\contcomp(X)$\footnote{analog zu \cref{tg:notation:contcompsupp}}, so gibt es genau
+    ein Radon-Maß $\mu$ auf $X$ mit
+    \[ I(f) = \int_X f \dif\mu 
+        \qquad\text{für alle $f\in\contcomp(X)$.}
+    \]
+    Dabei bedeutet \emph{positives Funktional}, dass für alle
+    $f\in\contcomp(X)$ mit $f\geq0$ auch $I(f)\geq0$ gilt.
+\end{thSatz}
+
+Die Definition(en) (in möglicherweise leicht anderer Form)
+sowie die allgemeine Transformationsformel und den
+Darstellungssatz von Riesz findet man in den meisten Büchern zur Maß- und
+Integrationstheorie. Für die (auf das Nötige) beschränkte Variante des Satzes
+von Fubini für lokalkompakte Räume, kann man bei Folland\cite{bookc:folland99}
+einen Beweis finden. Konkret sei auf folgende Referenzen verwiesen:
+\begin{itemize}[itemsep=0pt,
+                topsep=0.3\baselineskip]
+    \item  \cref{tg:def:radonmeasure}: 
+        Elstrod\cite[Kap.\,VIII,\;\S1]{bookc:elstrod11}
+    \item  \cref{tg:trafo}:
+        Elstrod\cite[Kap.\,V,\;\S3,\;3.1]{bookc:elstrod11}
+        oder
+        Bogachev\cite[Chapter\,3,\;3.6]{bookc:bogachev07}
+    \item  \cref{tg:Ccfubini}:
+        Folland\cite[\S7,\;7.22]{bookc:folland99}
+        % TODO: ggf. weitere sinnvolle Referenzen angeben
+    \item  \cref{tg:riesz}:
+        Elstrod\cite[Kap.\,VIII,\;\S2,\;2.5]{bookc:elstrod11}
+        oder
+        Folland\cite[\S7,\;7.2]{bookc:folland99}
+        % TODO: vorherigen Vortrag als Referenz hinzufügen
+\end{itemize}
+
+\bigskip
+Dank des Darstellungssatzes von Riesz bekommen wir sofort auch den Zusammenhang
+zwischen invarianten Maßen und Linearformen auf LKH-Gruppen:
+\begin{thLemma}[Invariante Radon-Maße entsprechen invarianten Linearformen]
+    Ist $\mu$ ein linksinvariantes Radon-Maß auf $G$, so existiert genau ein
+    linksinvariantes positives lineares Funktional $I$ auf $\contcomp(G)$, 
+    so dass für alle $f\in\contcomp(G)$ gilt:
+    \[ I(f) = \int_G f \dif\mu \]
+    Umgekehrt erhält man aus dieser Formel auch für jedes linksinvariante
+    Radon-Maß ein entsprechendes linksinvariantes positives lineares Funktional.
+\end{thLemma}
+
+\begin{proof}
+    \ldots % TODO
+\end{proof}
+
+
+\section{Das Haar'sche Maß}
+\begin{thDef}[Haar-Maß]
+    Ist $G$ eine LKH-Gruppe, so ist ein \emph{linkes Haar-Maß} (bzw.
+    \emph{rechtes Haar-Maß}) auf $G$ ein linksinvariantes (bzw.
+    rechtsinvariantes) Radon-Maß auf $G$, welches von null verschieden ist.
+\end{thDef}
 
 
 
