@@ -673,7 +673,9 @@ benötigen werden.
     \label{tg:Ccfubini}
     %
     Seien $X,Y$ lokalkompakte Hausdorffräume und seien $\mu$ bzw. $\nu$
-    Radon-Maße auf $X$ bzw. $Y$. Dann gilt für alle $f\in\contcomp(X\times Y)$:
+    Radon-Maße auf $X$ bzw. $Y$. Dann gilt für alle 
+    $f\in\contcomp(X\times Y)$\footnote{%
+        \label{tg:footn:Cc}analog zu \cref{tg:notation:contcompsupp}}:
     \[   \int_X \int_Y f(x,y) \dif{\nu(y)} \dif{\mu(x)}
         =\int_Y \int_X f(x,y) \dif{\mu(x)} \dif{\nu(y)}
     \]
@@ -684,8 +686,7 @@ benötigen werden.
     \label{tg:riesz}
     %
     Ist $X$ ein lokalkompakter Hausdorffraum und $I$ ein positives lineares
-    Funktional auf
-    $\contcomp(X)$\footnote{analog zu \cref{tg:notation:contcompsupp}}, so gibt es genau
+    Funktional auf $\contcomp(X)$\footref{tg:footn:Cc}, so gibt es genau
     ein Radon-Maß $\mu$ auf $X$ mit
     \[ I(f) = \int_X f \dif\mu 
         \qquad\text{für alle $f\in\contcomp(X)$.}
@@ -731,7 +732,39 @@ zwischen invarianten Maßen und Linearformen auf LKH-Gruppen:
 \end{thLemma}
 
 \begin{proof}
-    \ldots % TODO
+    Die Existenz eines eindeutigen Funktionals, welches die behauptete Formel
+    erfüllt, liefert uns der Riesz'sche Darstellungssatz \pcref{tg:riesz} und
+    umgekehrt ist klar, dass jedes Radon-Maß durch die Formel ein solches
+    Funktional induziert. Es bleiben also nur die Aussagen über die
+    Linksinvarianz zu zeigen. Dazu betrachten wir zu $y\in G$:
+    \[ I(L_yf) = \int_G L_yf \dif\mu 
+        \overset{(\star)}{=}
+        \int_G f \dif{\mu_y} 
+        \overset{(\star\star)}{=} 
+        \int_G f \dif\mu = I(f)
+    , \]
+    wobei $\mu_y$ das von der Linksmultiplikation mit $y^{-1}$ induzierte
+    Maß bezeichnet, d.\,h.:
+    $\mu_y = \mu_{x\mapsto y^{-1}x} = \mu \circ (x\mapsto yx)$.
+    Dann ist auch klar, dass wir bei $(\star)$ gerade die Transformationsformel
+    \pcref{tg:trafo} benutzen, um das Integral umzuformen. 
+    Nun starten wir in der Gleichheitenkette entweder links und erhalten so bei
+    gegebener Linksinvarianz von $\mu$ (welche bei $(\star\star)$ eingeht)
+    die Linksinvarianz von $I$; oder wir starten bei gegebener Linksinvarianz
+    des Funktionals auf beiden Seiten und bekommen somit die Gleichheit
+    $(\star\star)$. Wegen der Eindeutigkeitsaussage in \cref{tg:riesz} muss dann
+    schon $\mu=\mu_y$ gelten (d.\,h. $\mu$ ist linksinvariant), 
+    wenn $\mu_y$ ein Radon-Maß ist. Es ist $\mu_y$ aber in der Tat von innen
+    regulär, wie man leicht einsieht, denn für $B\in\borelsigmaalg(G)$ gilt:
+    \begin{align*}
+        \mu_y(B) &= \mu(yB)                                                 %
+        = \sup\{ \mu(K) \Mid K\subset yB,\; K\text{ kompakt} \}             \\
+        &= \sup\{ \mu(yK') \Mid K'=y^{-1}K\subset B,\; K\text{ kompakt} \}  \\
+        &= \sup\{ \mu_y(K') \Mid K'\subset B,\; K'\text{ kompakt} \}        %
+    \end{align*}
+    (Dabei haben wir benutzt, dass die Linksmultiplikation mit $y$ nach
+    \cref{tg:homoeom} ein Homöomorphismus ist.)
+    \\
 \end{proof}
 
 
