@@ -888,14 +888,14 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
 
 
 \medskip
-\begin{BspList}
+\begin{BspList}[\label{tg:haarbsp}]
 \item
     Sei $n\in\N$ gegeben.
     Für die additive Gruppe $(\R^n,+)$ ist ein Haar-Maß gegeben durch das
     Lebesgue-Maß, eingeschränkt auf die Borelmengen, d.\,h.:
     $\lambda^n\vert_{\borelsigmaalg(\R^n)}$.
     
-\item
+\item\label{tg:haarbsp:positivereals}
     Betrachten wir die multiplikative Gruppe $(\R[>0], \,\cdot\,)$, so prüft man mit
     Hilfe der Transformationsformel für das Lebesgue-Integral leicht nach, dass
     \[ f \mapsto \int_{\R[>0]} f \cdot \frac{1}{\id_{\R[>0]}} \dif{\lambda^1} \]
@@ -923,8 +923,8 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
     Dies ist wohldefiniert, da die Summe nach obigen Bemerkungen endlich
     sein muss.
     
-\item
-    In den vorherigen Beispielen war das Haar-Maß immer sowohl links- als auch
+\item\label{tg:haarbsp:matgroup}
+    In den vorherigen Beispielen war die Haar-Maße immer sowohl links- als auch
     rechtsinvariant. Wir werden nun an einem Beispiel aufzeigen, dass dies
     \emph{nicht} generell der Fall sein muss. Sei dazu eine Gruppe wie folgt
     gegeben:
@@ -938,14 +938,69 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
     Funktionen aus $\continuous(G)$ als Funktionen $\R[>0]\times\R\to\C$
     auffassen lassen.
     
-    Wir definieren nun die Funktionale $I$ und $J$ auf $\contcomp(G)$ wie folgt:
+    Wir definieren nun die Funktionale $I$ und $\tilde I$ auf $\contcomp(G)$ wie folgt:
     \[  I(f) \defeq \int_G \frac{f(x,y)}{x^2} \dif{\lambda^2(x,y)} 
         \qqundqq
-        J(f) \defeq \int_G \frac{f(x,y)}{x}   \dif{\lambda^2(x,y)}
-    \]
+        \tilde I(f) \defeq \int_G \frac{f(x,y)}{x}   \dif{\lambda^2(x,y)}
+    . \]
+    Diese sollen nun unsere Kandidaten für ein linkes bzw. rechtes Haar-Integral
+    sein. Dass dies tatsächlich so ist, zeigen wir mit Hilfe der
+    Transformationsformel für das Lebesgue-Integral. Dazu definieren wir für
+    alle $(a,b)\in\R[>0]\times\R$ affin lineare Abbildungen 
+    $\phi_{a,b},\psi_{a,b}\colon \R^2\to\R^2$ wie folgt:
+    \[ 
+        \phi_{a,b}(u,v) 
+        = \Matrix{ \frac{1}{a} & 0 \\ 0 & \frac{1}{a} } \vect{u\\v} 
+            + \vect{0\\-\frac{b}{a}}
+        %
+        \qqundqq
+        %
+        \psi_{a,b}(u,v)
+        = \Matrix{ \frac{1}{a} & 0 \\ -\frac{b}{a} & 1 } \vect{u\\v}
+    . \]
+    Wegen $a>0$ gilt für die Jacobi-Matrizen $\J\phi_{a,b},\J\psi_{a,b}$:
+    \[  \det\J\phi_{a,b}(u,v) = \frac{1}{a^2} > 0
+        \qqundqq
+        \det\J\psi_{a,b}(u,v) = \frac{1}{a} > 0
+    . \]
+    Also können wir die Transformationsformel anwenden (-- dies passiert bei
+    $(\ast)$ mit $\phi$ und bei $(\star)$ mit $\psi$ --) und erhalten für $A
+    \defeq \begin{psmallmatrix}a & b \\ 0 & 1\end{psmallmatrix} \in G$
+    und $f\in\contcomp(G)$:
+    \begin{align*}
+        I(L_{A^{-1}}f) 
+        &= \int_G \frac{f(ax,ay+b)}{x^2} \dif{\lambda^2(x,y)}   \\
+        &\overset{(\ast)}{=}                                    %
+        \int_G \frac{f(x,y)}{\left(\frac{x}{a}\right)^2} \;     %
+            \abs[\Big]{\frac{1}{a^2}}  \dif{\lambda^2(x,y)}     \\
+        &= \int_G \frac{f(x,y)}{x^2} \dif{\lambda^2(x,y)} = I(f)
+        \\[3ex]
+        \tilde I(R_{A}f) 
+        &= \int_G \frac{f(ax,bx+y)}{x} \dif{\lambda^2(x,y)}     \\
+        &\overset{(\star)}{=}                                   %
+        \int_G \frac{f(x,y)}{\frac{x}{a}} \;                    %
+            \abs[\Big]{\frac{1}{a}}  \dif{\lambda^2(x,y)}       \\
+        &= \int_G \frac{f(x,y)}{x} \dif{\lambda^2(x,y)} = \tilde I(f)
+    \end{align*}
+    Damit haben wir die Linksinvarianz von~$I$ und die Rechtsinvarianz
+    von~$\tilde I$ gezeigt. Die zugehörigen Haar-Maße erhält man dann wieder
+    analog zu \ref{tg:haarbsp:positivereals} durch Integration über
+    charakteristische Funktionen. Der interessante Punkt ist nun aber, dass sich
+    $I$ und $\tilde I$ offenbar nicht um einen positiven Faktor unterscheiden.
+    Wie wir jedoch später % TODO: verlinken
+    sehen werden, müsste dies der Fall sein, wenn entweder $I$ auch
+    rechtsinvariant oder $\tilde I$ auch linksinvariant wäre.
+    (Alternativ kann man zum direkten Nachweis natürlich auch einfach obige
+    Transformation mit $\psi$ bei $I(R_Af)$ anwenden und bemerken, dass man dann
+    immer einen von $A$ abhängigen Faktor~$a$ bekommt, bzw. bei $\phi$ für
+    $\tilde I(L_{A^{-1}}f)$ einen Faktor $1/a$.)
     
-
-\end{BspList}<++>
+\end{BspList}
+%
+Weitere Beispiele findet man zum Beispiel bei
+Elstrod\cite[Kap.\,VIII,\;\S3,\;3.10~und~3.14]{bookc:elstrod11}
+oder als Übungsaufgaben bei 
+Folland\cite[\S11,\;11.1,\;Exercises]{bookc:folland99}.
 
 
 

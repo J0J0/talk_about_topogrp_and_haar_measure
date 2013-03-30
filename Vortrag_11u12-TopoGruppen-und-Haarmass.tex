@@ -85,8 +85,8 @@
 \newtheorem{thBemerkung}[globalnum]{Bemerkung}
 \newtheorem{thBeisp}[globalnum]{Beispiel}
 \newtheorem{thBeispiele}[globalnum]{Beispiele}
-\newenvironment{BspList}{%
-\nopagebreak\begin{thBeispiele}%
+\newenvironment{BspList}[1][]{%
+\nopagebreak\begin{thBeispiele}#1%
 \hfill\begin{enumerate}[a),parsep=0pt,itemsep=0.8ex,leftmargin=2em]%
 }{%
 \end{enumerate}\end{thBeispiele}
@@ -119,6 +119,7 @@
 \DeclareMathOperator{\matSO}{SO}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\J}{J\mkern-1mu}
 \DeclareMathOperator{\Potmenge}{\mathcal{P}}
 %\DeclareMathOperator{\Kern}{ker}
 %\DeclareMathOperator{\Image}{im}
