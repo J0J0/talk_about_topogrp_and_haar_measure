@@ -69,7 +69,7 @@
  {}% indent amount
  {\bfseries}% theorem head font
  {.}% punctuation after theorem head
- {0.6cm}% space after theorem head (\newline possible)
+ {0.6cm plus 0.25cm minus 0.1cm}% space after theorem head (\newline possible)
  {}% theorem head spec 
  
 % set style and define thm like environments
@@ -118,6 +118,8 @@
 \DeclareMathOperator{\matO}{O}
 \DeclareMathOperator{\matSO}{SO}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Potmenge}{\mathcal{P}}
 %\DeclareMathOperator{\Kern}{ker}
 %\DeclareMathOperator{\Image}{im}
 
@@ -185,6 +187,11 @@
 \newcommand{\supnorm}[1]{\norm{#1}_\infty}
 \newcommand{\borelsigmaalg}{\mathcal{B}}
 \newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\thalf}{\tfrac{1}{2}}
+\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\pot}[1]{\Potmenge(#1)}
+
 
 \newcommand{\frakU}{\mathfrak{U}}
 

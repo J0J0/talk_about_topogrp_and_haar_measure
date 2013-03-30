@@ -34,12 +34,12 @@ Gilt für eine Teilmenge $A\subset G$ die Gleichheit $A=A^{-1}$, so nennen wir
 $A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an:
 \begin{BspList}
 \item
-    Eine beliebige Gruppe $G$ ist bezüglich der diskreten Topologie eine
+    Eine beliebige Gruppe ist bezüglich der diskreten Topologie eine
     topologische Gruppe. Diese ist dann trivialerweise eine LKH-Gruppe.
     
 \item
-    Es sind (für $n\in\N$) $(\R^n,+),\; (\R\setminus\{0\},\cdot),\; 
-    (\R[>0], \cdot)$ topologische Gruppen bezüglich der Teilraumtopologie
+    Es sind (für $n\in\N$) $(\R^n,+),\; (\R\setminus\{0\}, \,\cdot\,),\; 
+    (\R[>0], \,\cdot\,)$ topologische Gruppen bezüglich der Teilraumtopologie
     induziert von der Standardtopologie auf $\R^n$ bzw. $\R$. Alle drei sind
     lokalkompakt und hausdorffsch.
 
@@ -723,12 +723,14 @@ einen Beweis finden. Konkret sei auf folgende Referenzen verwiesen:
 Dank des Darstellungssatzes von Riesz bekommen wir sofort auch den Zusammenhang
 zwischen invarianten Maßen und Linearformen auf LKH-Gruppen:
 \begin{thLemma}[Invariante Radon-Maße entsprechen invarianten Linearformen]
+    \label{tg:rmeasuresVSfunctionals}
+    %
     Ist $\mu$ ein linksinvariantes Radon-Maß auf $G$, so existiert genau ein
-    linksinvariantes positives lineares Funktional $I$ auf $\contcomp(G)$, 
+    linksinvariantes positives Funktional $I$ auf $\contcomp(G)$, 
     so dass für alle $f\in\contcomp(G)$ gilt:
     \[ I(f) = \int_G f \dif\mu \]
     Umgekehrt erhält man aus dieser Formel auch für jedes linksinvariante
-    Radon-Maß ein entsprechendes linksinvariantes positives lineares Funktional.
+    Radon-Maß ein entsprechendes linksinvariantes positives Funktional.
 \end{thLemma}
 
 \begin{proof}
@@ -769,12 +771,181 @@ zwischen invarianten Maßen und Linearformen auf LKH-Gruppen:
 
 
 \section{Das Haar'sche Maß}
-\begin{thDef}[Haar-Maß]
+\begin{thDef}[Haar-Maß und Haar-Integral]
     Ist $G$ eine LKH-Gruppe, so ist ein \emph{linkes Haar-Maß} (bzw.
     \emph{rechtes Haar-Maß}) auf $G$ ein linksinvariantes (bzw.
     rechtsinvariantes) Radon-Maß auf $G$, welches von null verschieden ist.
+    %
+    Das nach \cref{tg:rmeasuresVSfunctionals} zu einem Haar-Maß
+    korrespondierende Funktional nennt man \emph{Haar-Integral}.
 \end{thDef}
 
+Das folgende Lemma wird zeigen, dass es nicht darauf ankommt, welche der beiden
+Varianten man genauer untersucht, da man zwischen linken und rechten Haar-Maßen
+beliebig wechseln kann. (Formal kann man z.\,B. auch wieder den nach dem Beweis
+von \cref{tg:unicont} zitierten Trick von Elstrod benutzen~\ldots)
+Wir werden uns daher ab jetzt primär um \emph{linke} Haar-Maße kümmern, was
+auch in der Literatur die gängigere Wahl darstellt. Wie eben erwähnt, ist dies
+aber keine Einschränkung, sondern lässt sich problemlos auf rechte Haar-Maße
+übertragen.
+%
+\begin{thLemma}[Wechsel zwischen linkem und rechtem Haar-Maß]
+    \label{tg:leftrighthaar}
+    %
+    Ist $\mu$ ein linkes (rechtes) Haar-Maß auf der LKH-Gruppe~$G$, 
+    so ist $\tilde\mu(B) \defeq \mu(B^{-1})$ ein rechtes (linkes) Haar-Maß.
+\end{thLemma}
+
+\begin{proof}\hfill\\
+    Dies ist offensichtlich, denn es gilt beispielsweise für linkes Haar-Maß
+    $\mu$, $x\in G$ und $B\in\borelsigmaalg(G)$:
+    \[ \tilde\mu(Bx) = \mu(x^{-1}B^{-1}) = \mu(B^{-1}) = \tilde\mu(B) \]
+\end{proof}
+
+Wir beweisen nun noch zwei einfache Aussagen über Haar-Maße und geben dann erst
+einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
+
+\begin{thLemma}[Grundlegende Eigenschaften des Haar-Maßes]
+    \label{tg:haarbasics}
+    %
+    Sei $G$ eine LKH-Gruppe und $\mu$ ein zugehöriges linkes Haar-Maß.
+    \begin{enumerate}[a)]
+        \item\label{tg:haarbasics:openset}
+            Ist $U\subset G$ offen und nicht leer, so gilt stets $\mu(U)>0$.
+        \item\label{tg:haarbasics:int}
+            Ist $f\in\contcompplus$, so gilt analog stets $\int_G f\dif\mu>0$.
+        \item\label{tg:haarbasics:compactness}
+            Es gilt genau dann $\mu(G)<\infty$, wenn $G$ kompakt ist.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}\hfill
+    \begin{enumerate}[(a)]
+        \item
+            Nach Definition ist $\mu\neq0$, also gibt es eine Menge
+            $B\in\borelsigmaalg(G)$ mit $\mu(B)>0$. Da $\mu$ außerdem von innen
+            regulär ist, muss es auch eine kompakte Menge $K\subset B\subset G$
+            geben, so dass $\mu(K)>0$ (denn sonst wäre auch $\mu(B)=0$). Sei nun
+            $U\subset G$ eine nicht-leere offene Menge und $u\in U$. Dann ist
+            $(xu^{-1}U)_{x\in K}$ eine offene Überdeckung von $K$ und somit gibt
+            es endliche viele $x_i\in K$ mit $i\in\{1,\ldots,n\}$ für ein
+            $n\in\N$, so dass $K\subset \bigcup_{i=1}^n x_iu^{-1}U$ gilt. Da
+            $\mu(K)>0$ und $\mu(x_iu^{-1}U) = \mu(U)$ für alle
+            $i\in\{1,\ldots,n\}$ gilt, muss also auch $\mu(U)$ von null
+            verschieden sein.
+            
+        \item
+            Sei $f\in\contcompplus$. Dann haben wir nach Definition von
+            $\contcompplus$ also $f\neq0$ und wir können die offene Menge
+            \[ U\defeq \bigl\{ x\in G \Mid f(x) > \thalf\supnorm{f} \bigr\} 
+                = f^{-1}\Bigl( 
+                        \bigl(\thalf\supnorm{f}, \mkern2mu\infty\bigr) 
+                    \Bigr) \neq \emptyset
+            \]
+            bilden. Dann gilt (nach den Eigenschaften des Integrals):
+            \[ \int_G f \dif\mu \geq \int_U f \dif\mu \geq \int_U
+                \thalf \supnorm{f} \dif\mu \;=\; \thalf\supnorm{f} \, \mu(U) 
+                \;\overset{\ref{tg:haarbasics:openset}}{>}\; 0
+            \]
+            
+        \item
+            Ist $G$ kompakt, so ist die eine Richtung klarerweise erfüllt, da $\mu$
+            ein Radon-Maß ist. (Das Maß kompakter Mengen unter lokal-endlichen
+            Maßen ist immer endlich, denn jeder Punkt einer kompakten Menge hat
+            eine Umgebung von endlichem Maß und es genügt (nach Kompaktheit)
+            eine endliche Anzahl solcher Umgebungen zur Überdeckung.)
+            
+            Sei nun also $\mu(G)<\infty$. Wir nehmen an, dass $G$ nicht kompakt
+            ist und führen dies zum Widerspruch. Weil $G$ lokalkompakt ist,
+            existiert ein kompaktes $U\in\frakU$. Wir können nun eine Folge
+            $\Nfolge x$ in $G$ finden, so dass die Folgenglieder paarweise
+            verschieden sind und
+            $x_j\notin \bigcup_{i=0}^{j-1} x_iU$ für alle $j\in\N$ gilt, denn:
+            Gäbe es ein $N\in\N$, so dass $G=\bigcup_{i=0}^N x_iU$ gilt, so wäre
+            $G$ als endliche Vereinigung kompakter Mengen selbst kompakt (was im
+            Widerspruch zu unserer Annahme steht).
+            \\
+            Nach \mycref{tg:basics:symVV}
+            gibt es ein symmetrisches $V\in\frakU$ mit $VV\subset U$ und wir
+            behaupten, dass dann $(x_nV)_{n\in\N}$ eine Folge von paarweise
+            disjunkten Mengen ist. In der Tat gilt für $j,k\in\N$, o.\,E. $j<k$,
+            dass $x_jV \cap x_kV = \emptyset$, denn wäre dieser Schnitt nicht
+            leer, so gäbe es $v_1,v_2\in V$, so dass $x_kv_1 = x_jv_2$ und damit
+            $x_k=x_jv_2v_1^{-1} \in x_jVV^{-1} \subset x_jU$ gilt; im
+            Widerspruch zur Wahl der Folge $\Nfolge x$.
+            \\
+            Da $\mu$ linksinvariant und $V$ eine Umgebung ist, 
+            gilt $\mu(x_jV) = \mu(V) > 0$ nach \ref{tg:haarbasics:openset} für
+            alle $j\in\N$.
+            Somit folgt: 
+            \[ \mu(G) \geq \mu\Bigl(\; \bigcup_{n=0}^\infty x_nV \mkern2mu\Bigr) 
+                = \sum_{n=0}^\infty \mu(V) = \infty
+            \]
+            Dies ist ein Widerspruch zur Voraussetzung $\mu(G)<\infty$, also muss $G$
+            tatsächlich schon kompakt sein.
+    \end{enumerate}
+\end{proof}
+
+
+\medskip
+\begin{BspList}
+\item
+    Sei $n\in\N$ gegeben.
+    Für die additive Gruppe $(\R^n,+)$ ist ein Haar-Maß gegeben durch das
+    Lebesgue-Maß, eingeschränkt auf die Borelmengen, d.\,h.:
+    $\lambda^n\vert_{\borelsigmaalg(\R^n)}$.
+    
+\item
+    Betrachten wir die multiplikative Gruppe $(\R[>0], \,\cdot\,)$, so prüft man mit
+    Hilfe der Transformationsformel für das Lebesgue-Integral leicht nach, dass
+    \[ f \mapsto \int_{\R[>0]} f \cdot \frac{1}{\id_{\R[>0]}} \dif{\lambda^1} \]
+    ein Haar-Integral auf $\contcomp(\R[>0])$ ist. Das zugehörige Haar-Maß
+    ist dann als Integration über die entsprechende charakteristische Funktion
+    gegeben:
+    \[ \borelsigmaalg(\R[>0])\to[0,\infty],\qquad
+        B \mapsto \int_{\R[>0]} \chi_B \cdot \frac{1}{\id_{\R[>0]}} \dif{\lambda^1}
+    \]
+    
+\item
+    Sei $G$ eine diskrete topologische Gruppe und sei $\mu$ das Zählmaß auf $G$.
+    (Zur Erinnerung:
+    \[ \mu\colon\pot{G}\to[0,\infty], \quad B\mapsto \begin{cases}
+            \abs{B} &,\quad \text{falls $B$ endlich,}   \\
+            \,\infty  &,\quad \text{sonst.)}
+        \end{cases}
+    \]
+    Da die kompakten Teilmengen von $G$ offensichtlich genau den endlichen
+    Teilmengen von $G$ entsprechen, ist klar, dass $\mu$ von innen regulär ist.
+    Außerdem ist $\mu$ klarerweise (links)invariant.
+    Deshalb ist $\mu$ ein Haar-Maß auf~$G$. Das zugehörige Haar-Integral ergibt
+    sich dann wie folgt für $f\in\contcomp(G)$:
+    \[ \int_G f \dif\mu \mkern9mu = \sum_{x\,\in\,\supp(f)} f(x) \]
+    Dies ist wohldefiniert, da die Summe nach obigen Bemerkungen endlich
+    sein muss.
+    
+\item
+    In den vorherigen Beispielen war das Haar-Maß immer sowohl links- als auch
+    rechtsinvariant. Wir werden nun an einem Beispiel aufzeigen, dass dies
+    \emph{nicht} generell der Fall sein muss. Sei dazu eine Gruppe wie folgt
+    gegeben:
+    \[ G \defeq \left\{ \Matrix{x & y \\ 0 & 1} 
+                \Mid[\;] x\in\R[>0],\,y\in\R \right\}
+        \subset \matGL(2,\R)
+    \]
+    Die Gruppenoperation ist natürlich die Matrixmultiplikation. Indem wir
+    $G$ als Teilmenge des~$\R^4$ auffassen, erhalten wir mit der
+    Teilraumtopologie auf $G$ eine LKH-Gruppe. Weiter bemerken wir, dass sich
+    Funktionen aus $\continuous(G)$ als Funktionen $\R[>0]\times\R\to\C$
+    auffassen lassen.
+    
+    Wir definieren nun die Funktionale $I$ und $J$ auf $\contcomp(G)$ wie folgt:
+    \[  I(f) \defeq \int_G \frac{f(x,y)}{x^2} \dif{\lambda^2(x,y)} 
+        \qqundqq
+        J(f) \defeq \int_G \frac{f(x,y)}{x}   \dif{\lambda^2(x,y)}
+    \]
+    
+
+\end{BspList}<++>
 
 
 
