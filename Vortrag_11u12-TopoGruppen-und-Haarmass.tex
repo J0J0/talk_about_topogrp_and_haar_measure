@@ -208,6 +208,10 @@
 \middle\vert\else\vert\fi%
 #1%
 }
+% \dots and a version for custom size control
+\newcommand{\cMid}[2][\,]{%
+#1#2\vert#1%
+}
 
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}

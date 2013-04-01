@@ -42,6 +42,306 @@ erhoffen, dass sich bei dem eben skizzierten Grenzprozess ein Wert für diesen
 Quotienten einstellt und wir dadurch ein (offenbar linksinvariantes) Maß auf~$G$
 bekommen.
 
+Wie allerdings gerade schon angesprochen, ist es einfacher, die Sichtweise auf
+Funktionale zu verlagern und in ähnlicher Herangehensweise ein Haar-Integral auf
+einer beliebigen (aber festen) LKH-Gruppe zu konstruieren. Im Detail
+funktioniert dies so:
+
+
+\section{Existenz eines Haar-Maßes}
+Sei ab jetzt $G$ eine fixierte LKH-Gruppe. Sind dann $f,\phi\in\contcompplus$,
+so ist 
+\[ V \defeq \bigl\{ x \in G \Mid \phi(x) > \thalf\supnorm\phi \bigr\} 
+      = \phi^{-1}\Bigl( \bigl( \thalf\supnorm\phi, \mkern2mu\infty\bigr) \Bigr)
+\]
+eine offene Menge und weil $\supp(f)$ kompakt ist, gibt es ein $n\in\N$ und 
+endlich viele $x_i\in G$, so dass $\supp(f)$ von $(x_iV)_{i\in\{1,\ldots,n\}}$ 
+überdeckt wird. Dann gilt für $x\in\supp(f)$:
+\[
+    \biggl( \frac{2}{\supnorm\phi} \sum_{i=1}^n L_{x_i}\phi \biggr)(x)
+    = \frac{2}{\supnorm\phi} \sum_{i=1}^n \phi(x_i^{-1}x)
+\]
+Wegen der Wahl von $x$ gibt es ein $x_k$ (mit $k\in\N$), so
+dass $x\in x_kV$ bzw. $x_k^{-1}x\in V$ erfüllt ist. Daraus folgt:
+\[  
+    \frac{2}{\supnorm\phi} \sum_{i=1}^n \phi(x_i^{-1}x)
+    \geq \frac{2}{\supnorm\phi} \, \phi(x_k^{-1}x)
+    > \frac{2}{\supnorm\phi} \, \frac{\supnorm\phi}{2} 
+    = 1 \geq \frac{f(x)}{\supnorm f}
+\]
+Trivialerweise ist die Ungleichung auch für $x\notin\supp(f)$ wahr, so dass
+gilt:
+\[  f \leq \frac{2\supnorm f}{\supnorm\phi} \sum_{i=1}^n L_{x_i}\phi  \]
+Diese Idee nutzen wir nun zu einer allgemeineren Definition, bei der wir
+unterschiedliche Koeffizienten für jeden Summanden zulassen:
+
+\begin{thDef}[(Haar-)Überdeckungszahl]
+    \label{pf:def:covernum}
+    %
+    Für $f,\phi \in\contcompplus$ definiert
+    \[
+        (f : \phi) \defeq 
+        \inf \biggl\{\, \sum_{i=1}^n c_i  \cMid[\;]{\bigg} 
+                     f \leq \sum_{i=1}^n c_i \, L_{x_i}\phi 
+                     \qtextq{mit} n\in\N, \;\;
+                     \forall i\in\{1,\ldots,n\}\colon 
+                     c_i\in\R[>0] \wedge x_i\in G
+            \biggr\}
+    \]
+    die sogenannte \emph{(Haar-)Überdeckungszahl} von $f$ und $\phi$.
+\end{thDef}
+
+Nach der Vorüberlegung ist die rechte Menge nicht leer und offenbar ist sie
+durch~$0$ von unten beschränkt; somit ist die Überdeckungszahl wohldefiniert.
+Weiter gelten folgende mehr oder weniger offensichtliche Aussagen:
+%
+\begin{thLemma}[Eigenschaften der Überdeckungszahl]
+    \label{pf:covernumprops}
+    %
+    Für $f,g,\phi \in\contcompplus$ und $x\in G$ sowie $\lambda\in\R[>0]$ gilt:
+    \begin{enumerate}[a)]\vspace{-4pt}
+        \item
+            Abschätzung nach unten:\quad
+            $0 < \supnorm{f}/\supnorm{\phi} \leq (f : \phi)$
+        \item
+            Linksinvarianz im ersten Argument:\quad
+            $(L_xf : \phi) = (f : \phi)$.
+        \item
+            Verträglichkeit mit Skalarmultiplikation:\quad
+            $(\lambda f : \phi) = \lambda (f : \phi)$.
+        \item
+            Subadditvität:\quad
+            $(f\mkern1mu{+}\mkern2mu g : \phi) \leq (f : \phi) + (g : \phi)$.
+        \item\label{pf:covernumprops:reducing}
+            \enquote{Abgeschätztes Kürzen}:\quad
+            $(f : g)\,(g : \phi) \geq (f : \phi)$.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    Seien alle Variablen wie in der Behauptung gewählt und seien weiter
+    \[  f \leq \sum_{i=1}^n c_i \, L_{x_i}\phi
+        \qqundqq
+        g \leq \sum_{j=1}^m d_j \, L_{y_j}\phi
+    \]
+    (mit $c_i,d_j\in\R[>0],\; x_i,y_j\in G$ für alle $i,j$) 
+    Ausdrücke wie in der Definition der Überdeckungszahl \pcref{pf:def:covernum}.
+    \begin{enumerate}[(a)]
+        \item 
+            Bilden wir auf beiden Seiten der Ungleichung für $f$ die
+            Supremumsnorm, so erhalten wir mit der Dreiecksungleichung:
+            \[ \supnorm{f} \leq \sum_{i=1}^n c_i \,
+                \underbrace{\supnorm{L_{x_i}\phi}}_{=\supnorm\phi}
+            \]
+            Durch Umstellen und Infimumsbildung folgt die Behauptung.
+            
+        \item
+            Es gilt
+            \[  f \leq \sum_{i=1}^n c_i \, L_{x_i}\phi 
+                \qiffq
+                L_xf \leq L_x \biggl( \sum_{i=1}^n c_i \, L_{x_i}\phi \biggr)
+                        = \sum_{i=1}^n c_i \, L_{xx_i}\phi
+            , \]
+            woraus sofort die Behauptung folgt.
+            
+        \item
+            Hier gilt analog:
+            \[  f \leq \sum_{i=1}^n c_i \, L_{x_i}\phi 
+                \qiffq
+                \lambda f \leq \lambda \sum_{i=1}^n c_i \, L_{x_i}\phi
+            \]
+            
+        \item
+            Addition der Ungleichungen für $f$ und $g$ liefert:
+            \[ f+g \leq 
+                \sum_{i=1}^n c_i\,L_{x_i}\phi + \sum_{j=1}^m d_j\,L_{y_j}\phi
+            \]
+            Alle rechten Kombinationen von $c_i,x_i,d_j,y_j$ können offenbar
+            auch mit der Wahl entsprechender $\gamma_k\in\R[\geq0],\; z_k\in G$
+            in folgender Formel erreicht werden:
+            \[ f+g \leq \sum_{k=1}^N \gamma_k \, L_{z_k}\phi \]
+            Dies sind aber genau die Ausdrücke aus \cref{pf:def:covernum},
+            welche wir zur Bestimmtung von $(f\mkern1mu{+}\mkern2mu g : \phi)$
+            beachten müssen. Daraus folgt zunächst
+            \[ (f\mkern1mu{+}\mkern2mu g : \phi) \leq 
+                    \sum_{i=1}^n c_i + \sum_{j=1}^m d_j
+            \]
+            und durch Infimumsbildung wieder die Behauptung.
+            
+        \item
+            Wir betrachten die Ungleichung für $f$, aber mit $g$ statt $\phi$, und
+            benutzen dann die Ungleichung für $g$ und $\phi$, um folgendermaßen
+            abzuschätzen:
+            \[ f \leq \sum_{i=1}^n c_i \, L_{x_i}g 
+                \leq \sum_{i=1}^n c_i \, L_{x_i}\biggl( 
+                        \sum_{j=1}^m d_j \, L_{y_j}\phi
+                    \biggr)
+                = \sum_{i=1}^n\sum_{j=1}^m c_i d_j \, L_{x_iy_j}\phi
+            \]
+            Wegen
+            \[ \sum_{i=1}^n\sum_{j=1}^m c_i d_j 
+                =   \biggl( \sum_{i=1}^n c_i \biggr) \, 
+                    \biggl( \sum_{j=1}^m d_j \biggr)
+            \]
+            folgt die Behauptung erneut durch Infimumsbildung.
+    \end{enumerate}
+\end{proof}
+
+\medskip
+Nun wählen wir ein $f_0\in\contcompplus$ beliebig, aber fest für den Rest des
+Abschnitts. Dieses $f_0$ wird (wie $K_0$ in der Einleitung) die Rolle der
+Normierung übernehmen, wie wir später sehen werden.
+
+\begin{thDef}[Approximierende Funktionale]
+    Zu jedem $\phi \in\contcompplus$ definieren wir ein Funktional $I_\phi$ wie folgt:
+    \begin{align*}
+        I_\phi\colon \contcompplus &\to         \R[>0]      \\
+                                f  &\mapsto     \frac{(f : \phi)}{(f_0 : \phi)}
+    \end{align*}
+\end{thDef}
+%
+Der Titel der Definition deutet schon darauf hin, als was wir diese Funktionale
+auffassen wollen: als Annäherungen an das gesuchte Haar-Integral. Dabei bekommen
+wir einen besseren Wert, je kleiner der Träger von $\phi\in\contcompplus$ wird
+(analog zur Idee in der Einleitung, $U$ auf $\{e\}$ zusammenschrumpfen zu
+lassen). Dass diese $I_\phi$ schon die meisten gewünschten Eigenschaften
+besitzen, zeigt folgendes Resultat:
+
+\begin{thLemma}[Eigenschaften der approximierenden Funktionale]
+    \label{pf:Iphiprops}
+    %
+    Seien $f,g,\phi \in\contcompplus$ und seien $x\in G$ sowie $\lambda\in\R[>0]$.
+    Dann gelten für $I_\phi$ folgende Aussagen:
+    \begin{enumerate}[a)]
+        \item\label{pf:Iphiprops:leftinvariance}
+            Linksinvarianz:\quad
+            $I_\phi(L_xf) = I_\phi(f)$.
+        \item\label{pf:Iphiprops:scalarmult}
+            Verträglichkeit mit Skalarmultiplikation:\quad
+            $I_\phi(\lambda f) = \lambda \, I_\phi(f)$.
+        \item\label{pf:Iphiprops:subadditive}
+            Subadditvität:\quad
+            $I_\phi(f+g) \leq I_\phi(f) + I_\phi(g)$.
+        \item\label{pf:Iphiprops:range}
+            Eingrenzung des Wertebereichs:\quad
+            $I_\phi(f) \in \bigl[ (f_0 : f)^{-1}, \; (f : f_0) \bigr]$.
+    \end{enumerate}
+\end{thLemma}
+
+\begin{proof}
+    Die ersten drei Eigenschaften folgen unmittelbar aus den entsprechenden 
+    Aussagen in \cref{pf:covernumprops}.
+    \\
+    Wir zeigen noch \ref{pf:Iphiprops:range}: Betrachte die Definition von
+    $I_\phi$ und verwende \mycref{pf:covernumprops:reducing}, um folgende
+    Abschätzungen einzusehen:
+
+    \begin{align*}
+        \frac{(f : \phi)}{(f_0 : \phi)} 
+        &\leq \frac{(f : f_0)\,(f_0 : \phi)}{(f_0 : \phi)}
+        = (f : f_0)
+        \\
+        \shortintertext{und}
+        %
+        \frac{(f : \phi)}{(f_0 : \phi)} 
+        &\geq \frac{(f : \phi)}{(f_0 : f)\,(f : \phi)}
+        = (f_0 : f)^{-1}
+        .
+    \end{align*}
+\end{proof}
+
+Der einzige Defekt, den die $I_\phi$ gegenüber dem gesuchten Haar-Integral noch
+haben, ist die fehlende Additivität. \mycref{pf:Iphiprops:subadditive} zeigt
+zwar schon die Subadditvität auf, jedoch ist nun der entscheidende Punkt im
+Beweis das folgende Lemma, welches zeigt, dass auch die umgekehrte Abschätzung
+für jeden gegebenen Fehler für klein genuge Träger von $\phi$ erfüllt ist.
+Etwas präziser formuliert bedeutet dies:
+
+\begin{thLemma}[Nahezu-Additivität unter gewissen Bedinungen]
+    Seien $f_1,f_2 \in\contcompplus$ und sei $\epsilon\in\R[>0]$ beliebig.
+    Dann gibt es eine Umgebung $U\in\frakU$ um $e$ derart, dass für alle
+    $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ gilt:
+    \[ I_\phi(f_1) + I_\phi(f_2) \leq I_\phi(f_1+f_2) + \epsilon  \]
+\end{thLemma}
+
+\begin{proof}
+    Sei $g\in\contcompplus$ derart, dass $g\vert_{\supp(f_1+f_2)} \equiv 1$
+    gilt. Die Existenz eines solchen $g$ wird durch eine Variante des
+    \emph{Urysohn'schen Lemmas} für lokalkompakten Hausdorfräume gesichert,
+    wie man sie zum Beispiel bei Folland\cite[\S4,\;4.32]{bookc:folland99} 
+    % TODO: Referenz auf vorherigen Vortrag einfügen
+    findet. Weiter sei $\delta\in\R[>0]$ so gewählt, dass
+    \[ 2\delta\, (f_1\mkern1mu{+}\mkern1mu f_2 : f_0) 
+        + \delta(1+2\delta) \, (g : f_0) \leq \epsilon
+    \]
+    gilt. Warum wir $\delta$ gerade so wählen, ist zu diesem Zeitpunkt nicht
+    offensichtlich und wird erst am Ende des Beweises klar werden.
+    Wir definieren nun $h,h_1,h_2$ wie folgt:
+    \[ h \defeq f_1+f_2+\delta g \qqundqq
+        h_j \defeq \frac{f_j}{h} \quad \text{für $j\in\{1,2\}$,}
+    \]
+    wobei wir $h_1,h_2$ außerhalb von $\supp(f_1)$ bzw. $\supp(f_2)$ identisch
+    null setzen. Dann gilt offenbar $h_1,h_2\in\contcompplus$, weswegen beide
+    Funktionen nach \cref{tg:unicont} rechts-gleichmäßig stetig sind und es somit
+    Umgebungen $U_1,U_2\in\frakU$ von $e$ gibt, so dass für $j\in\{1,2\}$ und
+    alle $y\in U_j$ gilt: $\supnorm{h_j - R_yh_j} < \delta$. Setze dann $U\defeq
+    U_1\cap U_2$. Sei weiter $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ und 
+    $h\leq \sum_{i=1}^n c_i\,L_{x_i}\phi$ mit zugehörigen
+    $n\in\N,\;c_i\in\R[>0],\; x_i\in G$ (wie in \cref{pf:def:covernum}).
+    
+    Sei ab jetzt $j\in\{1,2\}$.
+    Ist dann $x\in G$ beliebig, so können wir abschätzen:
+    \[  f_j(x) = h(x) \, h_j(x) \leq \sum_{i=1}^n c_i\,(L_{x_i}\phi)(x) \, h_j(x) \]
+    Falls nun für $k\in\{1,\ldots,n\}$ das betrachtete $x$ in 
+    $x_k \supp(\phi)$ liegt (sodass also $(L_{x_i}\phi)(x)\neq0$ gilt), 
+    so folgt aus der Wahl von $\phi$ bzw. $U$:
+    \[ \abs{ h_j(x_k) - h_j(x) } < \delta,  \qtextq{also insbesondere}
+        h_j(x) < h_j(x_k) + \delta
+    . \]
+    Greifen wir damit die Abschätzung für $f_j$ wieder auf, so folgt:
+    \[ 
+        f_j(x) 
+        \leq \sum_{i=1}^n c_i\,(L_{x_i}\phi)(x) \, \bigl( h_j(x_i) + \delta \bigr)
+    \]
+    Es hängt $h_j(x_i)$ nicht mehr von $x$ ab, womit wir daraus schließen dürfen:
+    \[ (f_j : \phi) \leq \sum_{i=1}^n c_i \, \bigl( h_j(x_i) + \delta \bigr) \]
+    %
+    Wir addieren nun die letzte Ungleichung für $j=1$ und $j=2$ und erhalten:
+    \[ (f_1 : \phi) + (f_2 : \phi) 
+        \leq \sum_{i=1}^n c_i \, \bigl( 
+        \underbrace{ h_1(x_i) + h_2(x_i) }_{
+            \hspace*{10pt} \leq 1, \text{ nach Def. v. } h_1,h_2 \hspace*{-15pt} }
+        + \;\; 2\delta \bigr)
+        \leq \sum_{i=1}^n c_i \, (1+2\delta)
+    \]
+    Da $h\leq \sum_{i=1}^n c_i\,L_{x_i}\phi$ beliebig war, folgt daraus zunächst
+    \[ (f_1 : \phi) + (f_2 : \phi)  \leq  (1+2\delta) \, (h : \phi)  \]
+    und nach Multiplikation mit $(f_0 : \phi)^{-1}$ auch
+    \[ I_\phi(f_1) + I_\phi(f_2)  \leq  (1+2\delta) \, I_\phi(h) . \]
+    Nun erhalten wir aus $h=f_1+f_2+\delta g$ mit 
+    \mycref{pf:Iphiprops:scalarmult} und \ref{pf:Iphiprops:subadditive}:
+    \[ 
+        I_\phi(f_1) + I_\phi(f_2) 
+        \leq (1+2\delta) \, \bigl(
+        I_\phi(f_1+f_2) + \delta I_\phi(g) 
+        \bigr)
+    \]
+    Verwenden wir zusätzlich \mycref{pf:Iphiprops:range}, so bekommen wir auch
+    noch die unerwünschten Abhängigkeiten von $\phi$ aus der Abschätzung
+    entfernt und erhalten folgende Ungleichung:
+    \begin{align*}
+        I_\phi(f_1) + I_\phi(f_2) 
+        &\leq I_\phi(f_1+f_2) + 2\delta \, (f_1\mkern1mu{+}\mkern1mu f_2 : f_0)
+        + \delta(1+2\delta) \, (g : f_0)
+        \\
+        &\leq I_\phi(f_1+f_2) + \epsilon
+    \end{align*}
+    Die letzte Relation gilt dabei auf Grund der Wahl von $\delta$ zu Beginn,
+    womit die Behauptung gezeigt ist.
+    \\
+\end{proof}
+
+
 
 
 
