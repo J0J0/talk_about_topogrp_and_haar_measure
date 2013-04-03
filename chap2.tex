@@ -110,7 +110,7 @@ Weiter gelten folgende mehr oder weniger offensichtliche Aussagen:
             Verträglichkeit mit Skalarmultiplikation:\quad
             $(\lambda f : \phi) = \lambda (f : \phi)$.
         \item
-            Subadditvität:\quad
+            Subadditivität:\quad
             $(f\mkern1mu{+}\mkern2mu g : \phi) \leq (f : \phi) + (g : \phi)$.
         \item\label{pf:covernumprops:reducing}
             \enquote{Abgeschätztes Kürzen}:\quad
@@ -257,7 +257,9 @@ Beweis das folgende Lemma, welches zeigt, dass auch die umgekehrte Abschätzung
 für jeden gegebenen Fehler für klein genuge Träger von $\phi$ erfüllt ist.
 Etwas präziser formuliert bedeutet dies:
 
-\begin{thLemma}[Nahezu-Additivität unter gewissen Bedinungen]
+\begin{thLemma}[Nahezu-Additivität gewisser approximierender Funktionale]
+    \label{pf:approxadditive}
+    %
     Seien $f_1,f_2 \in\contcompplus$ und sei $\epsilon\in\R[>0]$ beliebig.
     Dann gibt es eine Umgebung $U\in\frakU$ um $e$ derart, dass für alle
     $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ gilt:
@@ -341,7 +343,231 @@ Etwas präziser formuliert bedeutet dies:
     \\
 \end{proof}
 
+Nach diesem nun eher technischen Beweis haben wir fast alles beisammen, um das
+eigentliche Ziel dieses Abschnitts beweisen zu können. Wir verwenden im
+folgenden Beweis jedoch die Charakterisierung von Kompaktheit mittels der
+\emph{endlichen Durchschnittseigenschaft},\footnote{Engl.: \enquote{finite
+intersection property}} sodass wir wenigstens kurz angeben, wie die verwendete
+Aussage formal lautet:
+%
+\begin{thLemma}%
+    [Charakterisierung von Kompaktheit durch Schnitte abgeschlossener Mengen]
+    \label{pf:compactnessVSclosedsets}
+    %
+    Ist $X$ ein topologischer Raum, so ist $X$ genau dann kompakt, wenn 
+    für jede Familie $(A_i)_{i\in I}$ von in $X$ abgeschlossenen Mengen gilt:
+    Ist für alle endlichen $J\subset I$ der Schnitt $\bigcap_{i\in J} A_i$ nicht
+    leer, so ist auch der Schnitt $\bigcap_{i\in I} A_i$ über alle Mengen der
+    betrachteten Familie nicht leer.
+\end{thLemma}
 
+Der Beweis ist einfach und im Wesentlichen nur eine Umformulierung der
+Definition von Kompaktheit mit Hilfe der De~Morganschen Regeln.
+(Eine knappe Begründung findet sich zum Beispiel bei
+Folland\cite[\S4,\;4.21]{bookc:folland99}.)
+
+
+\begin{thSatz}[Existenz eines Haar-Maßes auf LKH-Gruppen]
+    Ist $G$ eine LKH-Gruppe, so existiert ein Haar-Maß auf $G$.
+\end{thSatz}
+
+\begin{proof}
+    Sei $G$ also eine beliebige LKH-Gruppe. Zuerst führen wir eine Abkürzung
+    ein: Setze für alle $f\in\contcompplus$:
+    \[ X_f \defeq \bigl[ (f_0 : f)^{-1}, \; (f : f_0) \bigr] \]
+    Wir bilden dann das (unendliche und potentiell \enquote{ziemlich große})
+    Produkt
+    \[ X \defeq \prod_{f\in\contcompplus} X_f =
+        \prod_{f\in\contcompplus} \bigl[ (f_0 : f)^{-1}, \; (f : f_0) \bigr]
+    , \]
+    welches wir natürlich mit der Produkttopologie versehen. Da alle Faktoren
+    kompakte Räume sind -- denn als Teilmengen von $\R$ ist nach
+    \emph{Heine-Borel} die Beschränktheit und Abgeschlossenheit der $X_f$
+    hinreichend zur Kompaktheit -- ist auch $X$ nach dem \emph{Satz von
+    Tychonoff} ein kompakter topologischer Raum. 
+    
+    An dieser Stelle sollten wir kurz klären, was $X$ nun eigentlich darstellt:
+    Nach Definition des Produkts, ist ein $J\in X$ eine Abbildung des Typs
+    \[  J\colon\contcompplus\to\R[>0], \quad f \mapsto J(f) ,
+        \qtextq{so dass}
+        \forAll_{f\in\contcompplus}\colon\quad J(f) \in X_f 
+    \]
+    erfüllt ist. Wir erkennen also in $X$ einen Teilraum aller Funktionale auf
+    $\contcompplus$.
+    %
+    Außerdem gilt nach \mycref{pf:Iphiprops:range}:
+    \[ \forAll_{\phi\in\contcompplus}\colon\quad I_\phi \in X \]
+    Definiere nun für alle Umgebungen $U\in\frakU$ von $e$:
+    \[  k(U) \defeq 
+        \{ I_\phi \Mid \phi\in\contcompplus,\;
+                                     \supp(\phi) \subset U 
+        \} \subset X
+        \qqundqq
+        K(U) \defeq \setclosure{k(U)} 
+    . \]
+    Ist $n\in\N$ und sind $U_1,\ldots,U_n\in\frakU$, so gilt offenbar:
+    $K(U_1\cap \ldots \cap U_n) \subset K(U_1) \cap \ldots \cap K(U_n)$. Daraus
+    folgt, dass das System aller Mengen $K(U)$ mit $U\in\frakU$ die endliche
+    Durchschnittseigenschaft besitzt und somit gilt wegen der Kompaktheit von~$X$
+    und \cref{pf:compactnessVSclosedsets}: 
+    \[ \bigcap_{U\in\frakU} K(U)\neq\emptyset . \] Also können wir ein 
+    $I\in\bigcap_{U\in\frakU} K(U)$ wählen und die Bezeichnung verrät schon,
+    dass wir nun zeigen werden, dass dieses~$I$ im Wesentlichen das gesuchte
+    Haar-Integral ist.
+    
+    Weil $I$ für alle $U\in\frakU$ im Abschluss von $k(U)$ 
+    liegt, schneidet jede Umgebung von $I$ in $X$ jede dieser Mengen.
+    Daraus folgt, dass wir für eine beliebige Umgebung $U\in\frakU$ von $e$ und
+    endlich viele Funktionen $f_1,\ldots,f_n\in\contcompplus$ (mit $n\in\N$)
+    sowie ein vorgegebenes $\epsilon\in\R[>0]$ ein $\phi\in\contcompplus$ finden
+    können, so dass gilt:
+    \[ \label{pf:existence:ineq} \tag{$\star$}
+        \supp(\phi) \subset U \qqundqq
+        \forAll_{j\in\{1,\ldots,n\}}\colon\quad 
+            \abs{ I(f_j) - I_\phi(f_j) } < \epsilon
+    . \]
+    Wir wollen zur Klarheit den letzten Schluss noch einmal etwas genauer
+    einsehen: Seien $U\in\frakU$ und $f_1,\ldots,f_n$ sowie $\epsilon$ wie oben
+    gegeben. Nach Definition der Produkttopologie sind alle Projektionen
+    auf die Faktoren von $X$ stetig, d.\,h. in diesem Fall sind zum Beispiel für
+    alle $j\in\{1,\ldots,n\}$ die Projektionen
+    \[ \pi_{f_j}\colon X \to X_f \]
+    stetig. Projektion bedeutet aber hier für ein Funktional $J\in X$ nichts
+    anderes, als $J$ auszuwerten, d.\,h. für $g\in\contcompplus$ gilt:
+    $\pi_g(J) = J(g)$. Wählen wir nun also zu $j\in\{1,\ldots,n\}$ als Umgebung
+    um $I(f_j)$ einfach  
+    \[
+        \bigl( I(f_j)-\epsilon,\, I(f_j)+\epsilon \bigr) \cap X_f \eqdef V_j'
+    , \]
+    so folgt aus der Stetigkeit von $\pi_{f_j}$, dass es eine Umgebung $V_j$ von
+    $I$ in $X$ gibt, so dass $I(V_j) \subset V_j'$ erfüllt ist. Setze dann 
+    $V\defeq \bigcap_{j=1}^n V_j$. Weil der Schnitt endlich ist, ist auch $V$
+    eine Umgebung von $I$ in $X$ und wegen $I\in K(U)$ ist der Schnitt von $V$
+    und $k(U)$ nicht leer. Nach Definition von $k(U)$ gibt es also
+    ein $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$, das die gewünschten
+    Approximationseigenschaften erfüllt.
+    
+    Nachdem wir den letzten Schritt nun im Detail nachvollzogen haben, zeigen
+    wir als Nächstes, dass $I$ tatsächlich linksinvariant und linear ist. Seien
+    dazu $f,g\in\contcompplus$, $\lambda\in\R[>0]$ und $y\in G$. Sei außerdem
+    $\epsilon\in\R[>0]$ beliebig. Dann gilt klarerweise $\lambda f
+    \in\contcompplus$ und nach \cref{tg:Cctranslat} gilt auch $L_yf
+    \in\contcompplus$. Weiterhin können wir nach \cref{pf:approxadditive} eine
+    Umgebung $U\in\frakU$ von $e$ finden, so dass für alle
+    $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ gilt:
+    \[ I_\phi(f) + I_\phi(g) \leq I_\phi(f+g) + \frac{\epsilon}{4} , \]
+    und da wir nach \mycref{pf:Iphiprops:subadditive} sowieso immer
+    Subadditivität haben, gilt dann klarerweise:
+    \[ \abs{ I_\phi(f) + I_\phi(g) - I_\phi(f+g) } \leq \frac{\epsilon}{4}
+    \]
+    Nach dem oben bei \eqref{pf:existence:ineq} Gezeigten können wir nun ein
+    $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ wählen, so dass
+    (zusätzlich) gilt:
+    \[
+        \abs{ I(h) - I_\phi(h) } < \frac{\epsilon}{4}
+        \qtextq{für}
+        h \in \{ f,\; g,\; f+g,\; \lambda f,\; L_yf \}
+    . \]
+    O.\,B.\,d.\,A. können wir auch noch 
+    $\abs{ I(f) - I_\phi(f) } \leq \epsilon/(4\lambda)$
+    annehmen (denn für $\lambda > 1$ ersetzen wir oben einfach $\epsilon/4$
+    durch $\epsilon/(4\lambda) < \epsilon/4$).
+    Mit Hilfe der Dreiecksungleichung und der in \cref{pf:Iphiprops} gezeigten
+    Eigenschaften von $I_\phi$ erhalten wir dann die Gültigkeit der folgenden
+    Ungleichungen:
+    { \allowdisplaybreaks
+    \begin{align*}
+        \abs{ I(f) + I(g) - I(f+g) }                                        %
+        &\leq \abs{ I(f) - I_\phi(f) } + \abs{ I(g) - I_\phi(g) }           \\
+        &\quad+ \abs{ I_\phi(f) + I_\phi(g) - I_\phi(f+g) }                 %
+            + \abs{ I_\phi(f+g) - I(f+g) }                                  \\
+        &\leq 4\cdot\frac{\epsilon}{4} = \epsilon                           %
+        %
+        \\[2ex]
+        %
+        \abs{ I(\lambda f) - \lambda I(f) }                                 %
+        &\leq \abs{ I(\lambda f) - I_\phi(\lambda f) }                      %
+            + \abs{ \lambda I_\phi(f) - \lambda I(f) }                      \\
+        &=    \abs{ I(\lambda f) - I_\phi(\lambda f) }                      %
+            + \lambda \, \abs{ I_\phi(f) - I(f) }                           \\
+        &\leq \frac{\epsilon}{4} + \frac{\epsilon}{4} < \epsilon            %
+        %
+        %\\[2ex]
+        \displaybreak \\
+        %
+        \abs{ I(f) - I(L_yf) }                                              %
+        &\leq \abs{ I(f) - I_\phi(f) } + \abs{ I_\phi(f) - I(L_yf) }        \\
+        &=    \abs{ I(f) - I_\phi(f) } + \abs{ I_\phi(L_yf) - I(L_yf) }     \\
+        &\leq \frac{\epsilon}{4} + \frac{\epsilon}{4} < \epsilon            %
+    \end{align*} }
+    Da $\epsilon\in\R[>0]$ beliebig war, erhalten wir aus den ersten beiden
+    Ungleichungen die Linearität, also $I(\lambda f + g) = \lambda I(f) + I(g)$,
+    und aus der letzten die Linksinvarianz, also $I(L_yf) = I(f)$.
+    
+    Nun setzen wir $I$ auf ganz $\contcomp(G)$ fort, indem wir zunächst einmal
+    $I(0) \defeq 0$ setzen und dann wie üblich für $F\in\contcomp(G)$ definieren:
+    \[ I(F) \defeq I\bigl( (\Re F)^{+} \bigr) - I\bigl( (\Re F)^{-} \bigr) 
+         + i\Bigl( I\bigl( (\Im F)^{+} \bigr) - I\bigl( (\Im F)^{-} \bigr) \Bigr)
+    , \]
+    wobei für $F(x) = u(x) + i\,v(x)$ (mit $u(x),v(x)\in\R$) gelte:
+    $(\Re F)(x) \defeq u(x)$ und $(\Im F)(x) \defeq v(x)$; sowie für
+    $H\colon G\to\R$: $H^{\pm}(x) \defeq \max\bigl(0,\pm H(x)\bigr)$.
+    Dabei behält $I$ offensichtlich die gerade bewiesenen Eigenschaften.
+    
+    Weil für alle $\phi\in\contcompplus$ aus der Definition von $I_\phi$ folgt,
+    dass $I_\phi(f_0) = 1$ gilt, gilt auch $I(f_0) = 1$. (Dies ist die bei der
+    Wahl von $f_0$ angesprochene Normierung. Da $f_0\in\contcompplus$
+    willkürlich war, sehen wir also schon, dass es nicht \emph{das} eindeutige
+    Haar-Integral geben kann.) Also ist $I\neq 0$ und außerdem nach
+    Konstruktion und \mycref{pf:Iphiprops:range} positiv, d.\,h. $I(h) > 0$ für
+    alle $h\in\contcompplus$. Das gewünschte Haar-Maß erhält man nun aus
+    \cref{tg:rmeasuresVSfunctionals}, womit wir den Existenzbeweis abgeschlossen
+    haben.
+    \\
+\end{proof}
+
+
+\section{Eindeutigkeit des Haar-Maßes}
+\vspace{-0.6\baselineskip}
+\textbf{\hspace*{1.2cm}\ldots~bis auf einen konstanten Faktor.}
+
+%Wir werden diesen Zusatz aber im Folgenden immer weglassen und einfach nur von
+%der \enquote{Eindeutigkeit des Haar-Maßes} sprechen, wobei wir uns stets obigen
+%Zusatz hinzudenken.
+
+\bigskip
+\noindent
+Der Beweis dieser Aussage ist glücklicherweise deutlich kürzer als die
+Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen: 
+
+\begin{thSatz}[Eindeutigkeit des Haar-Maßes (bis auf einen konstanten Faktor)]
+    Ist $G$ eine LKH-Gruppe und sind $\mu$ und $\nu$ zwei Haar-Maße auf $G$,
+    dann existiert ein $c\in\R[>0]$, so dass $\mu = c\,\nu$ gilt.
+\end{thSatz}
+
+\begin{proof}
+    Seien $G,\mu,\nu$ wie in der Behauptung. Wir zeigen zunächst, dass es eine
+    Konstante $c\in\R[>0]$ gibt, so dass
+    \[ c = \frac{\int_G f \dif\mu}{\int_G f \dif\nu} \]
+    für alle $f\in\contcompplus$ gilt. Daraus wird dann direkt die Behauptung
+    folgen. Seien also $f,g\in\contcompplus$ beliebig. Wir wählen dann eine
+    feste kompakte und symmetrische Umgebung $U_0\in\frakU$ von $e$. (Dies is
+    sicher möglich, denn man kann eine kompakte Umgebung wählen, da $G$
+    lokalkompakt ist, und diese dann z.\,B. mit ihrem Bild unter Invertierung
+    schneiden.) Wir sehen dann, dass die Träger der Abbildungen
+    \[  \tilde f_y(x) \defeq f(xy)-f(yx) \qqtextqq{bzw.} 
+        \tilde g_y(x) \defeq g(xy)-g(yx) 
+    \]
+    (für konstantes $y\in U_0$) in den nach \mycref{tg:basics:KKcompact}
+    kompakten Mengen
+    \[  \supp(f)\,U_0 \;\cup\; U_0\,\supp(f)  \qqtextqq{bzw.}
+        \supp(g)\,U_0 \;\cup\; U_0\,\supp(g)
+    \]
+    liegen. Also gilt $\tilde f_y, \tilde g_y \in\contcomp(G)$, womit beide
+    Funktionen nach \cref{tg:unicont} sowohl links- als auch rechts-gleichmäßig
+    stetig sind.
+    % TODO: to be continued \dots
+\end{proof}
 
 
 

@@ -18,6 +18,7 @@
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage{ifmtarg}
 \usepackage{xstring}
+\usepackage{remreset}
 
 %\usepackage[pdftex]{graphicx}
 %\usepackage[all]{xy}
@@ -41,6 +42,12 @@
 % global redefinition of paragraph spacing
 %\setlength{\parindent}{0pt}
 %\setlength{\parskip}{0.5em}
+
+% don't reset footnote numbers
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\makeatother
+
 
 % make parenthesized versions of \ref and cleveref's \cref
 \newcommand*{\pref}[1]{(\ref{#1})}
@@ -199,6 +206,11 @@
 \newcommand{\continuous}{C}
 \newcommand{\contcomp}{C_c}
 \newcommand{\contcompplus}{C_c^+}
+
+\DeclareMathOperator{\Realteil}{Re}
+\DeclareMathOperator{\Imaginaerteil}{Im}
+\let\Re=\Realteil
+\let\Im=\Imaginaerteil
 
 
 % make a \Mid macro as flexible replacement for \mid in sets definitions
