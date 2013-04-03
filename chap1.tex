@@ -32,7 +32,7 @@ ein Element von $G$, so benutzen wir außerdem folgende (intuitive) Notationen:
 
 Gilt für eine Teilmenge $A\subset G$ die Gleichheit $A=A^{-1}$, so nennen wir
 $A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an:
-\begin{BspList}
+\begin{BspList}[\label{tg:topogrpbsp}]
 \item
     Eine beliebige Gruppe ist bezüglich der diskreten Topologie eine
     topologische Gruppe. Diese ist dann trivialerweise eine LKH-Gruppe.
@@ -75,7 +75,7 @@ $A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an
     (Dabei bezeichnet $\opnorm{\,\cdot\,}_2$ die Operatornorm, induziert von der
     euklidschen Norm.)
     
-\item
+\item\label{tg:topogrpbsp:krulltopo}
     Ein weiteres interessantes Beispiel ist die sogenannte
     \emph{Krulltopologie}, für welche wir nur kurz den Anwendungszweck
     beschreiben wollen: Hat man eine (nicht notwendigerweise endliche)
@@ -442,7 +442,7 @@ D.\,h. effektiv ist $f$ dann sowieso eine Funktion auf $G/H$.)
 In diesem Abschnitt werfen wir einen kurzen Blick auf die Welt der (stetigen)
 Funktionen auf einer topologischen Gruppe. Die Begriffe, die wir gleich
 definieren werden, spielen unter anderem eine bedeutende Rolle beim Beweis der
-Existenz und Eindeutigkeit des Haar-Maßes (siehe später). % TODO: verlinken
+Existenz und Eindeutigkeit des Haar-Maßes (siehe \cref{chap:pf}).
 Auch in diesem Abschnitt sei $G$ eine beliebige topologische Gruppe.
 
 \begin{thNotation}[Funktionenräume, Träger]
@@ -628,8 +628,7 @@ Abschnitts sei $G$ eine solche Gruppe.
 \medskip
 Der Vollständigkeit halber wiederholen wir (ohne Beweis) 
 ein paar Definition und Sätze, die wir im Folgenden und später im Existenz- und
-Eindeutigkeitsbeweis des Haar-Maßes  % TODO: verlinken
-benötigen werden.
+Eindeutigkeitsbeweis des Haar-Maßes \pcref{chap:pf} benötigen werden.
 
 \begin{thDef}[Radon-Maß, lokal-endlich, von innen regulär]
     \label{tg:def:radonmeasure}
@@ -988,7 +987,7 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
     analog zu \ref{tg:haarbsp:positivereals} durch Integration über
     charakteristische Funktionen. Der interessante Punkt ist nun aber, dass sich
     $I$ und $\tilde I$ offenbar nicht um einen positiven Faktor unterscheiden.
-    Wie wir jedoch später % TODO: verlinken
+    Wie wir jedoch später \pcref{sec:haaruniq}
     sehen werden, müsste dies der Fall sein, wenn entweder $I$ auch
     rechtsinvariant oder $\tilde I$ auch linksinvariant wäre.
     (Alternativ kann man zum direkten Nachweis natürlich auch einfach obige
@@ -1002,7 +1001,10 @@ Weitere Beispiele findet man zum Beispiel bei
 Elstrod\cite[Kap.\,VIII,\;\S3,\;3.10~und~3.14]{bookc:elstrod11}
 oder als Übungsaufgaben bei 
 Folland\cite[\S11,\;11.1,\;Exercises]{bookc:folland99}.
-
+%
+Etwas Material dazu, was man mit dem Haar-Maß auf der Krulltopologie (siehe
+\mycref{tg:topogrpbsp:krulltopo}) anfangen kann, findet man beispielsweise bei
+Fried/Jarden\cite[Ch.\,18,~insb.\,18.5\,ff.]{bookc:fried05}.
 
 
 
