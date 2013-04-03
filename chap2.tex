@@ -550,23 +550,144 @@ Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen:
     Konstante $c\in\R[>0]$ gibt, so dass
     \[ c = \frac{\int_G f \dif\mu}{\int_G f \dif\nu} \]
     für alle $f\in\contcompplus$ gilt. Daraus wird dann direkt die Behauptung
-    folgen. Seien also $f,g\in\contcompplus$ beliebig. Wir wählen dann eine
-    feste kompakte und symmetrische Umgebung $U_0\in\frakU$ von $e$. (Dies is
-    sicher möglich, denn man kann eine kompakte Umgebung wählen, da $G$
-    lokalkompakt ist, und diese dann z.\,B. mit ihrem Bild unter Invertierung
-    schneiden.) Wir sehen dann, dass die Träger der Abbildungen
-    \[  \tilde f_y(x) \defeq f(xy)-f(yx) \qqtextqq{bzw.} 
-        \tilde g_y(x) \defeq g(xy)-g(yx) 
+    folgen. Seien also $f,g\in\contcompplus$ und $\epsilon\in\R[>0]$
+    beliebig. Wir wählen dann eine feste kompakte und symmetrische Umgebung
+    $U\in\frakU$ von $e$. (Dies ist sicher möglich, denn man kann eine
+    kompakte Umgebung wählen, da $G$ lokalkompakt ist, und diese dann z.\,B. mit
+    ihrem Bild unter Invertierung schneiden.) 
+    Definiere nun Abbildungen für $y\in U$ wie folgt:
+    \[  \tilde f_y \defeq R_yf - L_{y^{-1}}f
+        \qqundqq
+        \tilde g_y \defeq R_yg - L_{y^{-1}}g
+    . \]
+    Aus \cref{tg:Cctranslat} folgt, dass auch $\tilde f_y,\tilde g_y$ Funktionen
+    aus $\contcomp(G)$ sind. Nach \cref{tg:unicont} gibt es Umgebungen
+    $U_R,U_L\in\frakU$ von $e$, so dass für alle $y\in U_R$ bzw. $y\in U_L$
+    gilt: 
+    $\supnorm{f-R_yf}<\epsilon/2$ bzw. $\supnorm{f-L_{y^{-1}}f}<\epsilon/2$.
+    Analoges gilt mit $g$ statt $f$ für $U_R',U_L'\in\frakU$.
+    Setzte dann $U_R\cap U_L\cap U_L'\cap U_R' \eqdef U \in\frakU$
+    und wähle eine (nach \mycref{tg:basics:symV} existierende) symmetrische
+    Umgebung $V\in\frakU$ mit $V\subset U$. Dann gilt für $y\in V$ nach
+    Konstruktion und der Dreiecksungleichung:
+    \begin{align*}
+        \supnorm{ f_y }                                                 %
+        &=    \supnorm{ R_yf - L_{y^{-1}}f }                            \\
+        &\leq \supnorm{ R_yf - f } + \supnorm{ f - L_{y^{-1}}f }        \\
+        &\leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon        %
+        \\[1ex]
+        \supnorm{ g_y }                                                 %
+        &=    \supnorm{ R_yg - L_{y^{-1}}g }                            %
+         \leq \epsilon                                                  %
+    \end{align*}
+    Wir wählen nun ein $h\in\contcompplus$ mit $\supp(\phi)\subset V$, wobei $h$
+    zusätzlich symmetrisch in folgendem Sinne sein soll: $\forall\,x\in G\colon
+    h(x) = h(x^{-1})$. (Man kann so ein $h$ immer finden, denn hat man ein~$\tilde h$,
+    welches die letzte Bedingung noch nicht erfüllt, so setze einfach 
+    $h(x) \defeq \tilde h(x) + \tilde h(x^{-1})$, was wegen der Symmetrie von
+    $V$ immer noch einen Träger innerhalb von $V$ besitzt.)
+    
+    Wegen der Linksinvarianz von $\mu$ gilt dann\footnote{Da wir jedes Mal über ganz
+    $G$ integrieren, lassen wir dies in der Notation nun weg.}:
+    \begin{align*}
+        \left( \int h \dif\nu \right) \left( \int f \dif\mu \right)     %
+        &= \iint h(y) \, f(x) \dif{\mu(x)} \dif{\nu(y)}                 \\
+        &= \iint h(y) \, f(yx) \dif{\mu(x)} \dif{\nu(y)}                %%
+        %
+        \label{pf:uniq:firstint} \tag{$\triangle_1$}
+    \end{align*}
+    Man rechnet leicht nach, dass für $f_1,f_2\in\contcomp(G)$ und
+    $\Phi(x,y)\defeq f_1(x)\,f_2(y)$ für die Träger gilt: 
+    \[ \supp(\Phi) \subset \supp(f_1) \times \supp(f_2)
+    . \]
+    In Kombination mit \cref{tg:Cctranslat} ergibt sich, dass wir in den
+    folgenden Formeln zu Recht die Integrale vertauschen dürfen, da alle
+    Funktionen kompakten Träger haben und somit \cref{tg:Ccfubini} greift.
+    Damit gilt nun also mit der Symmetrie von~$h$ und der Linksinvarianz von
+    $\mu$ und $\nu$:
+    \begin{align*} 
+        \left( \int h \dif\mu \right) \left( \int f \dif\nu \right)     %
+        &= \iint h(x) \, f(y) \dif{\mu(x)} \dif{\nu(y)}                 \\
+        &= \iint h(y^{-1}x) \, f(y) \dif{\mu(x)} \dif{\nu(y)}           \\
+        &= \iint h(x^{-1}y) \, f(y) \dif{\mu(x)} \dif{\nu(y)}           \\
+        &= \iint h(x^{-1}y) \, f(y) \dif{\nu(y)} \dif{\mu(x)}           \\
+        &= \iint h(y) \, f(xy) \dif{\nu(y)} \dif{\mu(x)}                \\
+        &= \iint h(y) \, f(xy) \dif{\mu(x)} \dif{\nu(y)}                %%
+        %
+        \label{pf:uniq:secondint} \tag{$\triangle_2$}
+    \end{align*}
+    Nehmen wir nun die beiden Gleichheiten \eqref{pf:uniq:firstint} und 
+    \eqref{pf:uniq:secondint} zusammen und subtrahieren die zweite von der
+    ersten, so ergibt sich:
+    \begin{align*}
+        \abs*{                                                              %
+                \int h \dif\nu \; \int f \dif\mu                            %
+            -   \int h \dif\mu \; \int f \dif\nu                            %
+        }                                                                   %
+        &= \abs*{ \iint h(y) \,                                             %
+            \bigl( f(xy) - f(yx) \bigr) \dif{\mu(x)} \dif{\nu(y)} }         \\
+        &\leq \iint h(y) \, \abs{f_y(x)} \dif{\mu(x)} \dif{\nu(y)}          \\
+        &\leq \iint h(y) \;\epsilon\mkern2mu\chi_{\supp(f_y)}(x)            %
+                \dif{\mu(x)} \dif{\nu(y)}                                   \\
+        &\leq \epsilon \,                                                   %
+            \underbrace{ \mu\Bigl( \supp(f)\,U \;\cup\; U\supp(f)           %
+            \Bigr) }_{ \eqdef \alpha }                                      %
+            \, \int h \dif\nu                                               %%
+    \end{align*}
+    In der vorletzten Zeile haben wir ausgenutzt, dass der Träger von $h$ in $V$
+    enthalten ist, und die letzte Abschätzung erhalten wir folgendermaßen:
+    klarerweise gilt $\supp(f_y) \subset \supp(f)\,U \,\cup U\supp(f)$, wobei die
+    rechte Menge nach \mycref{tg:basics:KKcompact} kompakt ist; also ist
+    auch ihr Maß endlich und positiv, denn $\mu$ ist lokal-endlich. Außerdem ist
+    auch das Integral über $h$ bezüglich $\nu$ nach \mycref{tg:haarbasics:int}
+    von null verschieden (und endlich).
+    
+    Nun führen wir exakt dieselben Rechnungen für $g$ statt $f$ durch, woraus
+    sich die analoge Abschätzung für $g$ ergibt:
+    \begin{equation*}
+        \abs*{
+            \int h \dif\nu \; \int g \dif\mu
+            -   \int h \dif\mu \; \int g \dif\nu
+        }
+        \leq \epsilon \,
+            \underbrace{ \mu\Bigl( \supp(g)\,U \;\cup\; U\supp(g)           %
+            \Bigr) }_{ \eqdef \beta }                                       %
+            \, \int h \dif\nu                                               %%
+    \end{equation*}
+    Wir dividieren die Ungleichung für $f$ durch 
+    $\int h \dif[\,]\nu \, \int f \dif[\,]\nu > 0$ und analog die für $g$ durch 
+    $\int h \dif[\,]\nu \, \int g \dif[\,]\nu > 0$, womit wir folgende Abschätzungen
+    bekommen:
+    \[  \abs*{       \frac{\int f \dif\mu}{\int f \dif\nu} 
+                 -   \frac{\int h \dif\mu}{\int h \dif\nu}
+             }
+             \leq \frac{\epsilon \, \alpha}{\int f \dif\nu}
+        \qqundqq
+        \abs*{       \frac{\int g \dif\mu}{\int g \dif\nu} 
+                 -   \frac{\int h \dif\mu}{\int h \dif\nu}
+             }
+             \leq \frac{\epsilon \, \beta}{\int g \dif\nu}
+    . \]
+    Aus beiden zusammen und der Dreiecksungleichung folgt:
+    \[  \abs*{       \frac{\int f \dif\mu}{\int f \dif\nu} 
+                 -   \frac{\int g \dif\mu}{\int g \dif\nu}
+             }
+             \leq \frac{\epsilon \, \alpha}{\int f \dif\nu}
+                + \frac{\epsilon \, \beta}{\int g \dif\nu}
     \]
-    (für konstantes $y\in U_0$) in den nach \mycref{tg:basics:KKcompact}
-    kompakten Mengen
-    \[  \supp(f)\,U_0 \;\cup\; U_0\,\supp(f)  \qqtextqq{bzw.}
-        \supp(g)\,U_0 \;\cup\; U_0\,\supp(g)
+    Da aber $\epsilon$ beliebig war, folgt dann schon:
+    \[ \frac{\int f \dif\mu}{\int f \dif\nu} 
+        = \frac{\int g \dif\mu}{\int g \dif\nu}
     \]
-    liegen. Also gilt $\tilde f_y, \tilde g_y \in\contcomp(G)$, womit beide
-    Funktionen nach \cref{tg:unicont} sowohl links- als auch rechts-gleichmäßig
-    stetig sind.
-    % TODO: to be continued \dots
+    Wählen wir nun ein festes $g_0\in\contcompplus$, so gilt also für
+    $c \defeq \int g_0 \dif\mu\, / \int g_0 \dif\nu$ und alle $f\in\contcompplus$:
+    \[ \int f \dif\mu = c  \int f \dif\nu \]
+    Dies impliziert aber natürlich wegen der Linearität des Integrals, dass
+    diese Gleichheit auch schon für alle $f\in\contcomp(G)$ gelten muss.
+    Aus der Eindeutigkeitsaussage in \cref{tg:rmeasuresVSfunctionals} bzw. der
+    im Riesz'schen Derstellungssatz \pref{tg:riesz} folgt dann:
+    $\mu = c\,\nu$, und das wollten wir zeigen.
+    \\
 \end{proof}
 
 

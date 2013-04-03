@@ -602,11 +602,11 @@ Für spätere Zwecke halten wir noch folgende Aussage fest:
 \end{proof}
 
 
-\section{Invariante Maße und Linearformen}
+\section{Invariante Maße und Funktionale}
 Von nun an beschäftigen wir uns hauptsächlich mit LKH-Gruppen. Für den Rest des
 Abschnitts sei $G$ eine solche Gruppe.
 
-\begin{thDef}[Links-/Rechtsinvariante(s) Maß / Linearform]\hfill\\
+\begin{thDef}[Links-/Rechtsinvariantes Maß / Funktional]\hfill\\
     Wir nennen ein Maß $\mu\colon \borelsigmaalg(G) \to [0,\infty]$
     \emph{linksinvariant} (bzw. \emph{rechtsinvariant}), 
     wenn für alle $x\in G$ und alle $B\in\borelsigmaalg(G)$ gilt:
@@ -721,22 +721,23 @@ einen Beweis finden. Konkret sei auf folgende Referenzen verwiesen:
 
 \bigskip
 Dank des Darstellungssatzes von Riesz bekommen wir sofort auch den Zusammenhang
-zwischen invarianten Maßen und Linearformen auf LKH-Gruppen:
-\begin{thLemma}[Invariante Radon-Maße entsprechen invarianten Linearformen]
+zwischen invarianten Maßen und Funktionalen auf LKH-Gruppen:
+\begin{thLemma}%
+    [Invariante Radon-Maße entsprechen invarianten positiven Funktionalen]
     \label{tg:rmeasuresVSfunctionals}
     %
-    Ist $\mu$ ein linksinvariantes Radon-Maß auf $G$, so existiert genau ein
-    linksinvariantes positives Funktional $I$ auf $\contcomp(G)$, 
-    so dass für alle $f\in\contcomp(G)$ gilt:
+    Ist $I$ ein linksinvariantes positives Funktional auf $\contcomp(G)$, so
+    existiert genau ein linksinvariantes Radon-Maß~$\mu$ so dass für alle
+    $f\in\contcomp(G)$ gilt:
     \[ I(f) = \int_G f \dif\mu \]
     Umgekehrt erhält man aus dieser Formel auch für jedes linksinvariante
     Radon-Maß ein entsprechendes linksinvariantes positives Funktional.
 \end{thLemma}
 
 \begin{proof}
-    Die Existenz eines eindeutigen Funktionals, welches die behauptete Formel
-    erfüllt, liefert uns der Riesz'sche Darstellungssatz \pcref{tg:riesz} und
-    umgekehrt ist klar, dass jedes Radon-Maß durch die Formel ein solches
+    Die Existenz eines eindeutigen Radon-Maßes~$\mu$, welches die behauptete
+    Formel erfüllt, liefert uns der Riesz'sche Darstellungssatz \pcref{tg:riesz}
+    und umgekehrt ist klar, dass jedes Radon-Maß durch die Formel ein solches
     Funktional induziert. Es bleiben also nur die Aussagen über die
     Linksinvarianz zu zeigen. Dazu betrachten wir zu $y\in G$:
     \[ I(L_yf) = \int_G L_yf \dif\mu 
