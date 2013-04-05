@@ -1,0 +1,150 @@
+\chapter{Anwendung: Die modulare Funktion}
+Wir wollen nun eine erste Schlussfolgerung aus der soeben bewiesenen
+Eindeutigkeit des Haar-Maßes ziehen. Sei dazu erneut $G$ eine LKH-Gruppe und sei
+$\mu$ ein Haar-Maß auf $G$.
+
+\begin{thLemma}%
+    [Bildmaß eines linksinvarianten Maßes unter Rechtsmultiplikation]
+    \label{mod:pushforwardmeasure}
+    \hfill\\
+    %
+    Sei $y\in G$ und $\nu$ ein linksinvariantes Maß auf $G$.
+    Dann ist auch das von der Rechtsmultiplikation mit $y^{-1}$ induzierte Maß
+    $\nu \circ (x\mapsto xy)$ linksinvariant.
+\end{thLemma}
+
+\begin{proof}
+    Nach dem Assiziativgesetz gilt für alle $B\in\borelsigmaalg(G)$ und $z\in G$:
+    \[ \bigl(\nu \circ (x\mapsto xy)\bigr)(zB) 
+        = \nu\bigl( (zB) y \bigr) 
+        = \nu\bigl( z (By) \bigr)
+        = \nu(By) = \bigl(\nu \circ (x\mapsto xy)\bigr)(B)
+    \]
+\end{proof}
+
+\begin{thKorollar}%
+    [Haar-Maße unter Rechtsmultiplikation]
+    \label{mod:pushforwardhaar}
+    %
+    Für das Haar-Maß $\mu$ ist auch $\mu_y\colon B\mapsto\mu(By)$ ein Haar-Maß
+    und es gibt ein $\Delta(y)\in\R[>0]$, so dass $\mu_y = \Delta(y)\,\mu$ gilt.
+    Außerdem ist $\Delta(y)$ unabhängig von der Wahl von $\mu$.
+\end{thKorollar}
+
+\begin{proof}
+    Die erste Aussage folgt unmittelbar aus \cref{mod:pushforwardmeasure} (und
+    der Tatsache, dass $\mu_y$ auch von innen regulär ist, analog wie im Beweis
+    von \cref{tg:rmeasuresVSfunctionals}) und
+    die zweite aus \cref{pf:uniqueness}. Aus letzterem folgt außerdem die letzte
+    Behauptung, denn: Ist $\nu$ ein weiteres Haar-Maß, so gilt $\mu = c\,\nu$ für
+    ein $c\in\R[>0]$ und damit ergibt sich: 
+    $\Delta(y)\,c\,\nu = \Delta(y)\,\mu = \mu_y = (c\,\nu)_y = c \, \nu_y$,
+    woraus $\Delta(y)\,\nu = \nu_y$ folgt.
+    \\
+\end{proof}
+
+Da wir mit \cref{mod:pushforwardhaar} gezeigt haben, dass $\Delta$ unabhängig
+von der Wahl des Haar-Maßes ist, gibt dies Anlass zu folgender Definition:
+
+\begin{thDef}[Modulare Funktion, unimodular]
+    Die Abbildung $\Delta\colon G\to\R[>0]$ aus \cref{mod:pushforwardhaar}
+    heißt \emph{modulare Funktion (von $G$)}.
+    Gilt $\Delta \equiv 1$, so nennen wir $G$ \emph{unimodular}.
+\end{thDef}
+
+\begin{BspList}[\label{mod:unimodbsp}]
+\item
+    Jede abelsche LKH-Gruppe ist unimodular.
+    
+\item\label{mod:unimodbsp:kompakt}
+    Ist die LKH-Gruppe $G$ kompakt, so ist sie unimodular. Begründung: Weil $G$
+    kompakt ist, ist das Maß über den gesamten Raum endlich und es gilt dann: 
+    \[ \infty > \Delta(y)\,\mu(G) = \mu(Gy) = \mu(G) . \]
+    Wir dividieren durch $\mu(G)$ und erhalten $\Delta(y)=1$ für alle $y\in G$.
+\end{BspList}
+
+Zuletzt wollen wir noch zeigen, dass $\Delta\colon G \to \R[>0]$ sogar einige
+schöne Eigenschaften besitzt, konkret:
+
+\begin{thSatz}[Modulare Funktion als stetiger Gruppenhomomorphismus]
+    Die modulare Funktion $\Delta$ ist ein stetiger Gruppenhomomorphismus
+    von $G$ nach $(\R[>0],\,\cdot\,)$.
+\end{thSatz}
+
+\begin{proof}
+    Seien $x,z\in G$ beliebig und sei $B\in\borelsigmaalg(G)$ kompakt. Dann gilt
+    nach Definition der modularen Funktion:
+    \[ \Delta(xz) \, \mu(B) = \mu(Bxz) = \mu\bigl( (Bx) z \bigr)
+        = \Delta(z) \, \mu(Bx) = \Delta(z) \Delta(x) \mu(B)
+    \]
+    Da $\R[>0]$ abelsch ist, ist $\Delta$ also in der Tat ein Homomorphismus.
+    Für den zweiten Teil gehen wir wie folgt vor: Wir zeigen die Stetigkeit von
+    $\Delta$ im Punkt~$e$ und wie man sich leicht überlegt, folt aus der
+    Stetigkeit eines Gruppenhomomorphismus im neutralen Element (oder einem
+    beliebigen anderen Punkt) bereits die Stetigkeit auf der gesamten Gruppe.
+    
+    Zunächst nutzen wir aus, das nach dem Transformationssatz \pref{tg:trafo}
+    für alle $y\in G$ und alle integrierbaren Funktionen $f$ auf $G$ gilt:
+    \[ \int_G R_yf \dif\mu = \int_G f \dif{\mu_{y^{-1}}
+        = \Delta(y^{-1}) \int_G f \dif\mu
+    \]
+    (Dabei sei $\mu_{y^{-1}}\colon B \mapsto \mu(By^{-1})$ wie in
+    \cref{mod:pushforwardhaar}.)
+    Wir können also auch zeigen, dass die linke Seite als Abbildung in~$y$
+    stetig bei $e$ ist, denn dann muss dies für die rechte Seite und
+    insbesondere für $\bigl(y\mapsto\Delta(y^{-1}})\bigr)\circ\bigl(y\mapsto
+    y^{-1}\bigr) = \Delta$ auch gelten. Wähle dazu ein $f\in\contcompplus$ mit
+    $\int_G f \dif\mu = 1$ und definiere
+    \[ I\colon G\to\R[>0],\quad y\mapsto \int_G R_yf . \]
+    Wegen $I(e)=1$ müssen wir also für jedes $\epsilon\in\R[>0]$ eine
+    Umgebung $U\in\frakU$ um $e$ finden, so dass
+    $I(U)\subset (1-\epsilon,1+\epsilon)$ oder äquivalent
+    $\forall\,u\in U\colon \abs{I(u)-1} < \epsilon$ erfüllt ist.
+    
+    Wir setzen $K\defeq\supp(f)$ und wählen $\epsilon\in\R[>0]$ beliebig.
+    Weil $G$ lokalkompakt ist, gibt es eine kompakte Umgebung $K'\in\frakU$ 
+    um~$e$ und wir setzen $K''\defeq KK'$. Nach
+    \mycref{tg:basics:KKcompact} ist dann $K''$ eine kompakte Menge und es gilt
+    insbesondere $\mu(K'')<\infty$.
+    Da $f$ nach \cref{tg:unicont} rechts-gleichmäßig stetig ist, existiert
+    eine Umgebung $U'\in\frakU$ von~$e$, so dass für $y\in U'$ gilt:
+    \[ \supnorm{f - R_yf} < \frac{\epsilon}{\mu(K'')}  \] 
+    Setzte nun $U\defeq U'\cap K'$, was immer noch eine Umgebung um~$e$ ist.
+    Dann gilt für alle $y\in U$:
+    \[ \supp(f - R_yf) \subset K \cup KK' = K'' \]
+    Nun können wir für $y\in U$ folgendermaßen abschätzen:
+    \begin{align*}
+        \abs{I(y)-1}                                            %
+        &= \abs*{                                               %
+            \int_G (R_yf - f) \dif\mu                           %
+        }                                                       \\
+        &\leq \int_G \abs{ f - R_yf } \dif\mu                   \\
+        &\leq \frac{\epsilon}{\mu(K'')}\;\mu(K'') = \epsilon    %%
+    \end{align*}
+    Also ist $U$ die gesuchte Umgebung und wir sind fertig.
+    \\
+\end{proof}
+
+Wenn man nun weiß, dass $\Delta$ ein stetiger Gruppenhomomorphismus ist, so kann
+man für\ref{mod:unimodbsp:kompakt} von \cref{mod:unimodbsp} noch einen weiteren
+schönen Beweis geben:\\
+Ist $G$ kompakt, so muss $\Delta(G)\subset\R[>0]$ eine kompakte Untergruppe von
+$(\R[>0],\,\cdot\,)$ sein. Wie man leicht zeigt, ist aber $\{1\}\leq\R[>0]$ die
+einzige solche Untergruppe, womit $G$ schon unimodular sein muss.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
