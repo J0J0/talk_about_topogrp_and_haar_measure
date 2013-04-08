@@ -14,7 +14,7 @@ $\mu$ ein Haar-Maß auf $G$.
 \end{thLemma}
 
 \begin{proof}
-    Nach dem Assiziativgesetz gilt für alle $B\in\borelsigmaalg(G)$ und $z\in G$:
+    Nach dem Assoziativgesetz gilt für alle $B\in\borelsigmaalg(G)$ und $z\in G$:
     \[ \bigl(\nu \circ (x\mapsto xy)\bigr)(zB) 
         = \nu\bigl( (zB) y \bigr) 
         = \nu\bigl( z (By) \bigr)
@@ -75,11 +75,11 @@ schöne Eigenschaften besitzt, konkret:
     Seien $x,z\in G$ beliebig und sei $B\in\borelsigmaalg(G)$ kompakt. Dann gilt
     nach Definition der modularen Funktion:
     \[ \Delta(xz) \, \mu(B) = \mu(Bxz) = \mu\bigl( (Bx) z \bigr)
-        = \Delta(z) \, \mu(Bx) = \Delta(z) \Delta(x) \mu(B)
+        = \Delta(z) \, \mu(Bx) = \Delta(z) \, \Delta(x) \, \mu(B)
     \]
     Da $\R[>0]$ abelsch ist, ist $\Delta$ also in der Tat ein Homomorphismus.
     Für den zweiten Teil gehen wir wie folgt vor: Wir zeigen die Stetigkeit von
-    $\Delta$ im Punkt~$e$ und wie man sich leicht überlegt, folt aus der
+    $\Delta$ im Punkt~$e$ und wie man sich leicht überlegt, folgt aus der
     Stetigkeit eines Gruppenhomomorphismus im neutralen Element (oder einem
     beliebigen anderen Punkt) bereits die Stetigkeit auf der gesamten Gruppe.
     
@@ -126,12 +126,19 @@ schöne Eigenschaften besitzt, konkret:
 \end{proof}
 
 Wenn man nun weiß, dass $\Delta$ ein stetiger Gruppenhomomorphismus ist, so kann
-man für\ref{mod:unimodbsp:kompakt} von \cref{mod:unimodbsp} noch einen weiteren
+man für~\ref{mod:unimodbsp:kompakt} von \cref{mod:unimodbsp} noch einen weiteren
 schönen Beweis geben:\\
 Ist $G$ kompakt, so muss $\Delta(G)\subset\R[>0]$ eine kompakte Untergruppe von
 $(\R[>0],\,\cdot\,)$ sein. Wie man leicht zeigt, ist aber $\{1\}\leq\R[>0]$ die
 einzige solche Untergruppe, womit $G$ schon unimodular sein muss.
 
+\bigskip
+Die modulare Funktion spielt bei weiteren Anwendungen in der \emph{Harmonischen
+Analysis} immer wieder eine Rolle, wie man beispielsweise bei
+Folland\cite{bookc:folland95} in vielen Kapiteln nach der Einführung
+(Ch.\,2,\;\S2.4) sieht. Einige weitere einfachere, die modulare Funktion
+gebrauchende Resultate findet man auch bei
+Elstrod\cite[Kap.\,VIII,\;\S3,\;4.]{bookc:elstrod11}.
 
 
 

@@ -5,14 +5,14 @@ Für den Existenzbeweis halten wir uns an den erstmals 1940 von
 \emph{Andr\'e Weil} in allgemeiner Form veröffentlichten Beweis für beliebige
 LKH-Gruppen, wie man ihn etwa bei
 Elstrod\cite[Kap.\,VIII,\;\S3,\;3.12]{bookc:elstrod11} 
-oder auch bei Folland\cite[\S11,\;11.8]{bookc:folland99} findet.
+oder auch bei Folland\cite[Ch.\,11,\;\S11.8]{bookc:folland99} findet.
 Dieser benutzt das \emph{Auswahlaxiom} in Form des
 \emph{Satzes von Tychonoff}, weshalb es an dieser Stelle erwähnenswert ist, dass
 \emph{Henri Cartan} (ebenfalls 1940) auch einen Beweis gefunden hat, der ohne
 selbiges auskommt. (Siehe dazu auch: Alfsen\cite{artcle:alfsen63}.)
 Für den Eindeutigkeitsbeweis verwenden wir ein Argument, das hauptsächlich auf
 dem Gebrauch des \emph{Satzes von Fubini} beruht, siehe beispielsweise
-Folland\cite[\S11,\;11.9]{bookc:folland99}. Auch hier gibt es alternative
+Folland\cite[Ch.\,11,\;\S11.9]{bookc:folland99}. Auch hier gibt es alternative
 Beweise, die mit elementareren Mitteln auskommen. Der ursprüngliche Beweis von
 \emph{A. Weil} macht zum Beispiel keinen Gebrauch vom Satz von Fubini und ein
 Beweis nach diesem Schema findet man im oben schon zitierten Satz bei Elstrod.
@@ -51,6 +51,7 @@ Sei ab jetzt $G$ eine fixierte LKH-Gruppe. Sind dann $f,\phi\in\contcompplus$,
 so ist 
 \[ V \defeq \bigl\{ x \in G \Mid \phi(x) > \thalf\supnorm\phi \bigr\} 
       = \phi^{-1}\Bigl( \bigl( \thalf\supnorm\phi, \mkern2mu\infty\bigr) \Bigr)
+      \neq \emptyset
 \]
 eine offene Menge und weil $\supp(f)$ kompakt ist, gibt es ein $n\in\N$ und 
 endlich viele $x_i\in G$, so dass $\supp(f)$ von $(x_iV)_{i\in\{1,\ldots,n\}}$ 
@@ -178,8 +179,8 @@ Weiter gelten folgende mehr oder weniger offensichtliche Aussagen:
             \]
             Wegen
             \[ \sum_{i=1}^n\sum_{j=1}^m c_i d_j 
-                =   \biggl( \sum_{i=1}^n c_i \biggr) \, 
-                    \biggl( \sum_{j=1}^m d_j \biggr)
+                =   \biggl(\mkern2mu \sum_{i=1}^n c_i \biggr) \, 
+                    \biggl(\mkern2mu \sum_{j=1}^m d_j \biggr)
             \]
             folgt die Behauptung erneut durch Infimumsbildung.
     \end{enumerate}
@@ -259,7 +260,7 @@ Etwas präziser formuliert bedeutet dies:
     \label{pf:approxadditive}
     %
     Seien $f_1,f_2 \in\contcompplus$ und sei $\epsilon\in\R[>0]$ beliebig.
-    Dann gibt es eine Umgebung $U\in\frakU$ um $e$ derart, dass für alle
+    Dann gibt es eine Umgebung $U\in\frakU$ um $e$, so dass für alle
     $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ gilt:
     \[ I_\phi(f_1) + I_\phi(f_2) \leq I_\phi(f_1+f_2) + \epsilon  \]
 \end{thLemma}
@@ -268,7 +269,7 @@ Etwas präziser formuliert bedeutet dies:
     Sei $g\in\contcompplus$ derart, dass $g\vert_{\supp(f_1+f_2)} \equiv 1$
     gilt. Die Existenz eines solchen $g$ wird durch eine Variante des
     \emph{Urysohn'schen Lemmas} für lokalkompakten Hausdorfräume gesichert,
-    wie man sie zum Beispiel bei Folland\cite[\S4,\;4.32]{bookc:folland99} 
+    wie man sie zum Beispiel bei Folland\cite[Ch.\,4,\;\S4.32]{bookc:folland99} 
     % TODO: Referenz auf vorherigen Vortrag einfügen
     findet. Weiter sei $\delta\in\R[>0]$ so gewählt, dass
     \[ 2\delta\, (f_1\mkern1mu{+}\mkern1mu f_2 : f_0) 
@@ -286,8 +287,8 @@ Etwas präziser formuliert bedeutet dies:
     Umgebungen $U_1,U_2\in\frakU$ von $e$ gibt, so dass für $j\in\{1,2\}$ und
     alle $y\in U_j$ gilt: $\supnorm{h_j - R_yh_j} < \delta$. Setze dann $U\defeq
     U_1\cap U_2$. Sei weiter $\phi\in\contcompplus$ mit $\supp(\phi)\subset U$ und 
-    $h\leq \sum_{i=1}^n c_i\,L_{x_i}\phi$ mit zugehörigen
-    $n\in\N,\;c_i\in\R[>0],\; x_i\in G$ (wie in \cref{pf:def:covernum}).
+    sei $h\leq \sum_{i=1}^n c_i\,L_{x_i}\phi$ mit zugehörigen
+    $n\in\N,\;c_i\in\R[>0],\; x_i\in G$ (wie in \cref{pf:def:covernum}) gegeben.
     
     Sei ab jetzt $j\in\{1,2\}$.
     Ist dann $x\in G$ beliebig, so können wir abschätzen:
@@ -362,7 +363,7 @@ Aussage formal lautet:
 Der Beweis ist einfach und im Wesentlichen nur eine Umformulierung der
 Definition von Kompaktheit mit Hilfe der De~Morganschen Regeln.
 (Eine knappe Begründung findet sich zum Beispiel bei
-Folland\cite[\S4,\;4.21]{bookc:folland99}.)
+Folland\cite[Ch.\,4,\;\S4.21]{bookc:folland99}.)
 
 
 \begin{thSatz}[Existenz eines Haar-Maßes auf LKH-Gruppen]
@@ -374,7 +375,7 @@ Folland\cite[\S4,\;4.21]{bookc:folland99}.)
 \begin{proof}
     Sei $G$ also eine beliebige LKH-Gruppe. Zuerst führen wir eine Abkürzung
     ein: Setze für alle $f\in\contcompplus$:
-    \[ X_f \defeq \bigl[ (f_0 : f)^{-1}, \; (f : f_0) \bigr] \]
+    \[ X_f \defeq \bigl[ (f_0 : f)^{-1}, \; (f : f_0) \bigr] . \]
     Wir bilden dann das (unendliche und potentiell \enquote{ziemlich große})
     Produkt
     \[ X \defeq \prod_{f\in\contcompplus} X_f =
@@ -431,7 +432,7 @@ Folland\cite[\S4,\;4.21]{bookc:folland99}.)
     gegeben. Nach Definition der Produkttopologie sind alle Projektionen
     auf die Faktoren von $X$ stetig, d.\,h. in diesem Fall sind zum Beispiel für
     alle $j\in\{1,\ldots,n\}$ die Projektionen
-    \[ \pi_{f_j}\colon X \to X_f \]
+    \[ \pi_{f_j}\colon X \to X_{f_j} \]
     stetig. Projektion bedeutet aber hier für ein Funktional $J\in X$ nichts
     anderes, als $J$ auszuwerten, d.\,h. für $g\in\contcompplus$ gilt:
     $\pi_g(J) = J(g)$. Wählen wir nun also zu $j\in\{1,\ldots,n\}$ als Umgebung
@@ -573,12 +574,12 @@ Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen:
     Umgebung $V\in\frakU$ mit $V\subset U$. Dann gilt für $y\in V$ nach
     Konstruktion und der Dreiecksungleichung:
     \begin{align*}
-        \supnorm{ f_y }                                                 %
+        \supnorm{ \tilde f_y }                                          %
         &=    \supnorm{ R_yf - L_{y^{-1}}f }                            \\
         &\leq \supnorm{ R_yf - f } + \supnorm{ f - L_{y^{-1}}f }        \\
         &\leq \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon        %
         \\[1ex]
-        \supnorm{ g_y }                                                 %
+        \supnorm{ \tilde g_y }                                          %
         &=    \supnorm{ R_yg - L_{y^{-1}}g }                            %
          \leq \epsilon                                                  %
     \end{align*}
@@ -589,8 +590,8 @@ Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen:
     $h(x) \defeq \tilde h(x) + \tilde h(x^{-1})$, was wegen der Symmetrie von
     $V$ immer noch einen Träger innerhalb von $V$ besitzt.)
     
-    Wegen der Linksinvarianz von $\mu$ gilt dann\footnote{Da wir jedes Mal über ganz
-    $G$ integrieren, lassen wir dies in der Notation nun weg.}:
+    Wegen der Linksinvarianz von $\mu$ gilt dann:\footnote{Da wir jedes Mal über ganz
+    $G$ integrieren, lassen wir dies in der Notation nun weg.}
     \begin{align*}
         \left( \int h \dif\nu \right) \left( \int f \dif\mu \right)     %
         &= \iint h(y) \, f(x) \dif{\mu(x)} \dif{\nu(y)}                 \\
@@ -628,8 +629,9 @@ Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen:
         }                                                                   %
         &= \abs*{ \iint h(y) \,                                             %
             \bigl( f(xy) - f(yx) \bigr) \dif{\mu(x)} \dif{\nu(y)} }         \\
-        &\leq \iint h(y) \, \abs{f_y(x)} \dif{\mu(x)} \dif{\nu(y)}          \\
-        &\leq \iint h(y) \;\epsilon\mkern2mu\chi_{\supp(f_y)}(x)            %
+        &\leq \iint h(y) \,                                                 %
+                \abs[\big]{\tilde f_y(x)} \dif{\mu(x)} \dif{\nu(y)}         \\
+        &\leq \iint h(y) \;\epsilon\mkern2mu\chi_{\supp(\tilde f_y)}(x)     %
                 \dif{\mu(x)} \dif{\nu(y)}                                   \\
         &\leq \epsilon \,                                                   %
             \underbrace{ \mu\Bigl( \supp(f)\,U \;\cup\; U\supp(f)           %
@@ -638,10 +640,10 @@ Konstruktion im letzten Abschnitt. Wir können deshalb sofort loslegen:
     \end{align*}
     In der vorletzten Zeile haben wir ausgenutzt, dass der Träger von $h$ in $V$
     enthalten ist, und die letzte Abschätzung erhalten wir folgendermaßen:
-    klarerweise gilt $\supp(f_y) \subset \supp(f)\,U \,\cup U\supp(f)$, wobei die
+    klarerweise gilt $\supp(\tilde f_y) \subset \supp(f)\,U \,\cup U\supp(f)$, wobei die
     rechte Menge nach \mycref{tg:basics:KKcompact} kompakt ist; also ist
     auch ihr Maß endlich und positiv, denn $\mu$ ist lokal-endlich. Außerdem ist
-    auch das Integral über $h$ bezüglich $\nu$ nach \mycref{tg:haarbasics:int}
+    auch das Integral über $h$ be\-züg\-lich~$\nu$ nach \mycref{tg:haarbasics:int}
     von null verschieden (und endlich).
     
     Nun führen wir exakt dieselben Rechnungen für $g$ statt $f$ durch, woraus

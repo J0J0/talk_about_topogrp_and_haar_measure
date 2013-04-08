@@ -31,7 +31,7 @@ ein Element von $G$, so benutzen wir außerdem folgende (intuitive) Notationen:
 \end{thNotation}
 
 Gilt für eine Teilmenge $A\subset G$ die Gleichheit $A=A^{-1}$, so nennen wir
-$A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an:
+$A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiele an:
 \begin{BspList}[\label{tg:topogrpbsp}]
 \item
     Eine beliebige Gruppe ist bezüglich der diskreten Topologie eine
@@ -44,8 +44,8 @@ $A$~\emph{symmetrisch}. Nun geben wir aber zunächst einmal ein paar Beispiel an
     lokalkompakt und hausdorffsch.
 
 \item
-    Bezüglich der Standardtopologie (d.\,h. der durch den Betrag induzierten
-    Topologie) auf $\C$ ist der Einheitskreis 
+    Bezüglich der Standardtopologie auf~$\C$ (d.\,h. der durch den Betrag induzierten
+    Topologie) ist der Einheitskreis 
     $\left\{ z\in\C \;\big\vert\; \abs{z}=1 \right\} \cong S^1 \subset \R^2$ mit
     der Multiplikation (in $\C$) eine kompakte topologische Gruppe.
 
@@ -139,24 +139,26 @@ zu nennen, ist:
     Sei $a\in G$ und seien $U\subset G$ offen, $V\subset G$ abgeschlossen und
     $B\subset G$ beliebig.
 
-    Dann sind auch $aU$ und $Ua$ offen sowie $aV$ und $Va$ abgeschlossen.
-    Außerdem sind auch $B\mkern2muU$ und $UB$ offen.
+    Dann sind auch $a\mkern1mu U$ und $U\mkern-2mu a$ offen sowie $aV$ und $V\mkern-2mu a$
+    abgeschlossen.  Außerdem sind auch $B\mkern1mu U$ und $U\mkern-2mu B$ offen.
 \end{thKorollar}
 
 \begin{proof}
     Die ersten beiden Aussagen folgen unmittelbar aus \cref{tg:homoeom} und
     der Tatsache, dass Homöomorphismen sowohl offen als auch abgeschlossen sind.
     Für die letzte Aussage schreiben wir
-    \[ B\mkern2muU = \bigcup_{b\in B} bU \qqundqq UB = \bigcup_{b\in B} Ub, \]
-    wodurch wir erkennen, dass $B\mkern2muU$ und $UB$ als Vereinigungen offener
-    Mengen jeweils wieder offen sind. 
+    \[  B\mkern1mu U  = \bigcup_{b\in B} b\mkern1mu U 
+        \qqundqq 
+        U\mkern-2mu B = \bigcup_{b\in B} U\mkern-1mu b, \]
+    wodurch wir erkennen, dass $B\mkern1mu U$ und $U\mkern-2mu B$ als
+    Vereinigungen offener Mengen jeweils wieder offen sind. 
     \\
 \end{proof}
 
-Aus den letzten beiden Resultaten erhalten wir insbesondere, dass wir für
-$a\in G$ und eine Umgebung $U\subset G$ von $e$ immer eine Umgebung $aU$ um $a$
-mit gleichen topologischen Eigenschaften wie $U$ erhalten. Da Umgebungen um $e$
-auch weiterhin eine große Rolle spielen werden, definieren wir:
+Aus den letzten beiden Resultaten erhalten wir insbesondere, dass wir für $a\in
+G$ und eine Umgebung $U\subset G$ von $e$ immer eine Umgebung $a\mkern1mu U$ um
+$a$ mit gleichen topologischen Eigenschaften wie $U$ erhalten. Da Umgebungen um
+$e$ auch weiterhin eine große Rolle spielen werden, definieren wir:
 \begin{thDef}[Umgebungen von \texorpdfstring{$e$}{e}]
     Ist $G$ eine topologische Gruppe, so bezeichne
     \[ \frakU \defeq \{ U\subset G \Mid \text{$U$ ist Umgebung von $e$} \} \]
@@ -219,13 +221,14 @@ wieder benutzen werden, gemeinsam fest:
             \end{align*}
             als Komposition stetiger Abbildungen auch stetig ist. Wir verwenden
             nun das bekannte Kriterium, dass $\setclosure H$ eine Untergruppe
-            von $G$ ist, wenn für alle $x,y\in\setclosure{H}$ auch
-            $xy^{-1}\in\setclosure{H}$ gilt.
+            von $G$ ist, wenn $\setclosure{H}$ nicht leer ist und für alle
+            $x,y\in\setclosure{H}$ auch $xy^{-1}\in\setclosure{H}$ gilt. Wegen
+            $H\subset\setclosure{H}$ ist erstere Bedingung klarerweise erfüllt.
             
             Seien nun also $x,y \in \setclosure{H}$ beliebig und sei $U\subset G$
             eine beliebige Umgebung von $xy^{-1}$. Weil obiges $\phi$ stetig
             ist und offenbar $\phi(x,y)=xy^{-1}$ gilt, existiert eine Umgebung
-            $T\subset G$ von $(x,y)$ derart, dass $\phi(T) \subset U$ gilt. Nach
+            $T\subset G\times G$ von $(x,y)$ derart, dass $\phi(T) \subset U$ gilt. Nach
             Definition der Produkttopologie gibt es dann Umgebungen $T_1$ bzw.
             $T_2$ von $x$ bzw. $y$, so dass $(x,y) \in T_1\times T_2 \subset T$
             erfüllt ist. Wegen $x,y\in\setclosure{H}$ erhalten wir: 
@@ -314,7 +317,7 @@ ist, wodurch wir wieder einen topologischen Raum erhalten. (Achtung: $G/H$
 muss zunächst keine Gruppe bilden; dazu muss $H$ zusätzlich ein Normalteiler
 sein!) Aus \cref{tg:translates} folgt, dass $\pi$ eine offene Abbildung ist,
 denn: Sei $U \subset G$ offen, dann ist $\pi^{-1}\bigl( \pi(U) \bigr)
-= \pi^{-1}\bigl( \{ uH \Mid u\in U \} \bigr) = UH$, was offen in $G$ ist.
+= \pi^{-1}\bigl( \{ uH \Mid u\in U \} \bigr) = U\mkern-1.5mu H$, was offen in $G$ ist.
 Wir können nun Folgendes zeigen:
 %
 \begin{thLemma}[Topologische Gruppen und Quotientenräume]
@@ -404,7 +407,7 @@ Wir erhalten daraus:
     [\enquote{Hausdorffizierung} topologischer Gruppen]
     \label{tg:hausdorffizierung}
     %
-    Ist $G$ eine (lokalkompakte) topologische Gruppe, welche \emph{nicht}
+    Wenn $G$ eine (lokalkompakte) topologische Gruppe ist, welche \emph{nicht}
     hausdorffsch ist, so erhalten wir mittels $G/\setclosure{\{e\}}$ eine
     hausdorffsche (lokalkompakte) topologische Gruppe.
 \end{thKorollar}
@@ -421,7 +424,7 @@ Wir erhalten daraus:
     so dass $gHg^{-1}$ keine Teilmenge von $H$ ist. Weil $H$ abgeschlossen ist,
     ist auch $gHg^{-1}$ abgeschlossen und wir erhalten somit eine neue
     Untergruppe $H \cap (gHg^{-1})$ von $G$, welche auch abgeschlossen ist.
-    Diese wäre dann eine echte Teilmenge von $H$, was im Widerspruch zur
+    Diese wäre dann eine echte Teilmenge von $H$, was im Widerspruch zu
     der Tatsache steht, dass $H$ offensichtlich die (bezüglich Inklusion)
     kleinste abgeschlossene Untergruppe von $G$ ist. Also war die Annahme falsch
     und es muss schon $H\triangleleft G$ gelten.
@@ -504,11 +507,12 @@ Begriffe genau vertauscht eingeführt.
 \end{thLemma}
 
 \begin{proof}
-    Sei $f\in\contcomp(G)$ und $\epsilon\in\R[>0]$.
-    Da beide Begriffe analog definiert sind, genügt es, eine der Behauptungen zu
-    beweisen; die andere verläuft dann absolut analog. Wir zeigen also nur, dass
-    $f$ rechts-gleichmäßig stetig ist.
-    \\
+    Sei $f\in\contcomp(G)$ und $\epsilon\in\R[>0]$.  Die analoge Definition der
+    beiden Begriffe erlaubt es uns, nur eine der Behauptungen zu zeigen, denn
+    der Beweis der anderen verläuft dann genauso.  Wir zeigen also nur, dass $f$
+    rechts-gleichmäßig stetig ist.
+
+    \noindent
     Sei $K\defeq\supp(f)$. Zu jedem $x\in K$ betrachte dann die Abbildung
     \[ G\ni y \mapsto \abs{ f(x)-f(xy) } .\]
     Diese ist stetig als Komposition stetiger Abbildungen, und $e$ wird offenbar
@@ -537,35 +541,62 @@ Begriffe genau vertauscht eingeführt.
     dass $x\in x_jV_j$ und damit $x_j^{-1}x \in V_j$ gilt. Außerdem erhalten
     wir $xy = x_j(x_j^{-1}x)y \in x_jV_jV_j \subset x_jU_{x_j}$, denn $y$ ist
     nach Definition von $U$ auch in $V_j$. Es folgt mit der Dreiecksungleichung:
-    \[ \abs{ f(x) - f(xy) } 
-        \leq \underbrace{ \abs{f(x_j) - f(xy)} }_{
-                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
-                \text{ wegen } xy\in x_jU_{x_j} 
-             }
-          +  \underbrace{ \abs{f(x) - f(x_j)} }_{
-                \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
-                \text{ wähle } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
-             }
-        < \epsilon
-    \]
+    \begin{align*}
+        \abs{ f(x) - f(xy) } 
+        \quad &\leq \quad
+        \underbrace{ \abs{f(x_j) - f(xy)} }_{
+            \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+            \text{ da } xy\in x_jU_{x_j} 
+        }
+        \quad + \quad
+        \underbrace{ \abs{f(x) - f(x_j)} }_{ \hspace*{26pt} \mathclap{
+            \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+            \text{ mit } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
+        } }
+        \quad < \quad \epsilon
+    %
+    \\
+    \intertext{%
     Also ist auch in diesem Fall \eqref{tg:unicont:p:wantineq} erfüllt.
     Sei nun $x\notin K$, d.\,h. $f(x)=0$, und $xy\in K$, so dass wir uns noch um
     $f(xy)$ kümmern müssen. Wieder muss es ein $j\in\{1,\ldots,n\}$ geben, so
     dass $xy\in x_jV_j\subset x_jU_{x_j}$ und damit $x_j^{-1}xy\in V_j$ sowie 
     $x_j^{-1}x\in V_jy^{-1} \subset V_j V_j \subset U_{x_j}$ gilt. 
     Wir erhalten dann durch eine ähnliche Abschätzung die Gültigkeit von
-    \eqref{tg:unicont:p:wantineq}:
-    \[ \abs{ f(x) - f(xy) } = \abs{f(xy)}
-        \leq \underbrace{ \abs{f(x_j) - f(xy)} }_{
+    \eqref{tg:unicont:p:wantineq}:%
+    }
+    %
+       \abs{ f(x) - f(xy) } = \abs{f(xy)}
+        \quad &\leq \quad
+             \underbrace{ \abs{f(x_j) - f(xy)} }_{
                 \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
-                \text{ wegen } xy\in x_jU_{x_j} 
+                \text{ da } xy\in x_jU_{x_j} 
              }
-          +  \underbrace{ \abs{f(x_j)} }_{
+          \quad + \quad
+             \underbrace{ \abs{f(x_j)} }_{ \hspace*{40pt} \mathclap{
                 \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
-                \text{ wähle } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
-             }
-        < \epsilon
-    \]
+                \,\smash{
+                \begin{aligned}[t]
+                    &\text{{\scriptsize mit }$\scriptstyle y=x_j^{-1}x$} \\[-0.35\baselineskip]
+                    &\text{\scriptsize in \eqref{tg:unicont:p:haveineq}}
+                \end{aligned} }%
+             } }
+        \quad < \quad \epsilon
+    \end{align*}
+    % 
+    % 
+    %
+    % \[ \abs{ f(x) - f(xy) } = \abs{f(xy)}
+    %     \leq \underbrace{ \abs{f(x_j) - f(xy)} }_{
+    %             \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+    %             \text{ wegen } xy\in x_jU_{x_j} 
+    %          }
+    %       +  \underbrace{ \abs{f(x_j)} }_{
+    %             \overset{\eqref{tg:unicont:p:haveineq}}{<} \frac{\epsilon}{2},
+    %             \text{ wähle } y=x_j^{-1}x \text{ in \eqref{tg:unicont:p:haveineq}}  
+    %          }
+    %     < \epsilon
+    % \]
 \end{proof}
 
 (Anstatt sich darauf zu berufen, dass der Beweis analog abläuft, kann man auch
@@ -610,7 +641,7 @@ Abschnitts sei $G$ eine solche Gruppe.
     Wir nennen ein Maß $\mu\colon \borelsigmaalg(G) \to [0,\infty]$
     \emph{linksinvariant} (bzw. \emph{rechtsinvariant}), 
     wenn für alle $x\in G$ und alle $B\in\borelsigmaalg(G)$ gilt:
-    \[  \mu(xB) = \mu  
+    \[  \mu(xB) = \mu(B)
         \qquad\qquad\bigl(\text{bzw. } 
         \mu(Bx) = \mu(B) 
         \,\bigr)
@@ -655,11 +686,12 @@ Eindeutigkeitsbeweis des Haar-Maßes \pcref{chap:pf} benötigen werden.
 \begin{thSatz}[Allgemeine Transformationsformel]
     \label{tg:trafo}
     %
-    Seien $(X,\mathcal{A},\mu)$ ein Maßraum, $(Y,\mathcal{B})$ ein
-    messbarer Raum, $\phi\colon X\to Y$ eine $\mathcal{A}$-$\mathcal{B}$-messbare
-    Abbildung und $f\colon Y\to\C$ eine $\mathcal{B}$-messbare Funktion.
+    Seien $(X,\mathcal{A},\mu)$ ein Maßraum, $(Y,\mathcal{A}')$ ein
+    messbarer Raum, $\phi\colon X\to Y$ eine
+    $\mathcal{A}$"~$\mathcal{A}'$"~mess\-ba\-re
+    Abbildung und $f\colon Y\to\C$ eine $\mathcal{A}'$"~mess\-ba\-re Funktion.
     Ist dann $\mu_\phi \defeq \mu \circ \phi^{-1}$ das von $\mu$ und $\phi$
-    induzierte Bildmaß auf $(Y,\mathcal{B})$, dann gilt:
+    induzierte Bildmaß auf $(Y,\mathcal{A}')$, dann gilt:
     \\
     Es ist $f$ genau dann bzüglich $\mu_\phi$ integrierbar, wenn $f\circ\phi$
     bezüglich $\mu$ integrierbar ist und für die Integrale gilt:
@@ -709,19 +741,19 @@ einen Beweis finden. Konkret sei auf folgende Referenzen verwiesen:
         oder
         Bogachev\cite[Chapter\,3,\;3.6]{bookc:bogachev07}
     \item  \cref{tg:Ccfubini}:
-        Folland\cite[\S7,\;7.22]{bookc:folland99}
+        Folland\cite[Ch.\,7,\;\S7.22]{bookc:folland99}
         % TODO: ggf. weitere sinnvolle Referenzen angeben
     \item  \cref{tg:riesz}:
         Elstrod\cite[Kap.\,VIII,\;\S2,\;2.5]{bookc:elstrod11}
         oder
-        Folland\cite[\S7,\;7.2]{bookc:folland99}
+        Folland\cite[Ch.\,7,\;\S7.2]{bookc:folland99}
         % TODO: vorherigen Vortrag als Referenz hinzufügen
 \end{itemize}
 
 \bigskip
 Dank des Darstellungssatzes von Riesz bekommen wir sofort auch den Zusammenhang
 zwischen invarianten Maßen und Funktionalen auf LKH-Gruppen:
-\begin{thLemma}%
+\begin{thSatz}%
     [Invariante Radon-Maße entsprechen invarianten positiven Funktionalen]
     \label{tg:rmeasuresVSfunctionals}
     %
@@ -731,7 +763,7 @@ zwischen invarianten Maßen und Funktionalen auf LKH-Gruppen:
     \[ I(f) = \int_G f \dif\mu \]
     Umgekehrt erhält man aus dieser Formel auch für jedes linksinvariante
     Radon-Maß ein entsprechendes linksinvariantes positives Funktional.
-\end{thLemma}
+\end{thSatz}
 
 \begin{proof}
     Die Existenz eines eindeutigen Radon-Maßes~$\mu$, welches die behauptete
@@ -875,8 +907,8 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
             Widerspruch zur Wahl der Folge $\Nfolge x$.
             \\
             Da $\mu$ linksinvariant und $V$ eine Umgebung ist, 
-            gilt $\mu(x_jV) = \mu(V) > 0$ nach \ref{tg:haarbasics:openset} für
-            alle $j\in\N$.
+            gilt $\mu(x_nV) = \mu(V) > 0$ nach \ref{tg:haarbasics:openset} für
+            alle $n\in\N$.
             Somit folgt: 
             \[ \mu(G) \geq \mu\Bigl(\; \bigcup_{n=0}^\infty x_nV \mkern2mu\Bigr) 
                 = \sum_{n=0}^\infty \mu(V) = \infty
@@ -924,8 +956,8 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
     sein muss.
     
 \item\label{tg:haarbsp:matgroup}
-    In den vorherigen Beispielen war die Haar-Maße immer sowohl links- als auch
-    rechtsinvariant. Wir werden nun an einem Beispiel aufzeigen, dass dies
+    In den vorherigen Beispielen waren die Haar-Maße immer sowohl links- als auch
+    rechts\-in\-va\-ri\-ant. Wir werden nun an einem Beispiel aufzeigen, dass dies
     \emph{nicht} generell der Fall sein muss. Sei dazu eine Gruppe wie folgt
     gegeben:
     \[ G \defeq \left\{ \Matrix{x & y \\ 0 & 1} 
@@ -956,7 +988,7 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
         \qqundqq
         %
         \psi_{a,b}(u,v)
-        = \Matrix{ \frac{1}{a} & 0 \\ -\frac{b}{a} & 1 } \vect{u\\v}
+        = \Matrix{ \frac{1}{a} & 0 \\ \,-\frac{b}{a} & 1 } \vect{u\\v}
     . \]
     Wegen $a>0$ gilt für die Jacobi-Matrizen $\J\phi_{a,b},\J\psi_{a,b}$:
     \[  \det\J\phi_{a,b}(u,v) = \frac{1}{a^2} > 0
@@ -997,10 +1029,10 @@ einmal einige Beispiele für Haar-Maße auf LKH-Gruppen.
     
 \end{BspList}
 %
-Weitere Beispiele findet man zum Beispiel bei
+Weitere Beispiele findet man etwa bei
 Elstrod\cite[Kap.\,VIII,\;\S3,\;3.10~und~3.14]{bookc:elstrod11}
 oder als Übungsaufgaben bei 
-Folland\cite[\S11,\;11.1,\;Exercises]{bookc:folland99}.
+Folland\cite[Ch.\,11,\;\S11.1,\;Exercises]{bookc:folland99}.
 %
 Etwas Material dazu, was man mit dem Haar-Maß auf der Krulltopologie (siehe
 \mycref{tg:topogrpbsp:krulltopo}) anfangen kann, findet man beispielsweise bei
