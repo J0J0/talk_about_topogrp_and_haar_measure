@@ -20,8 +20,6 @@
 \usepackage{xstring}
 \usepackage{remreset}
 
-%\usepackage[pdftex]{graphicx}
-%\usepackage[all]{xy}
 
 \usepackage[pdftex,bookmarks,colorlinks=false,pdfborder={0 0 0},%
             pdfauthor={Johannes Prem}]{hyperref}
@@ -39,10 +37,6 @@
 %%% macro definitions and other things
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% global redefinition of paragraph spacing
-%\setlength{\parindent}{0pt}
-%\setlength{\parskip}{0.5em}
-
 % don't reset footnote numbers
 \makeatletter
 \@removefromreset{footnote}{chapter}
@@ -54,6 +48,7 @@
 \newcommand*{\pcref}[1]{(\cref{#1})}
 
 % make a even more clever \mycref that produces "Lemma 42a)" etc.
+% (to see it in action check out the code in chap{1,2,3}.tex)
 \newcommand{\mycref}[1]{%
     \begingroup%
     \StrCount{#1}{:}[\mycrefCount]%
@@ -89,8 +84,8 @@
 \newtheorem{thLemma}[globalnum]{Lemma}
 \newtheorem{thKorollar}[globalnum]{Korollar}
 
-\newtheorem{thBemerkung}[globalnum]{Bemerkung}
-\newtheorem{thBeisp}[globalnum]{Beispiel}
+%\newtheorem{thBemerkung}[globalnum]{Bemerkung}
+%\newtheorem{thBeisp}[globalnum]{Beispiel}
 \newtheorem{thBeispiele}[globalnum]{Beispiele}
 \newenvironment{BspList}[1][]{%
 \nopagebreak\begin{thBeispiele}#1%
@@ -120,16 +115,14 @@
 \DeclareMathOperator*{\bigdotcup}{\overset{\mkern0mu\scalebox{0.6}{$\bullet$}}{\bigcup}}
 
 % new math 'operators'
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\J}{J\mkern-1mu}
 \DeclareMathOperator{\matGL}{GL}
 \DeclareMathOperator{\matSL}{SL}
 \DeclareMathOperator{\matO}{O}
 \DeclareMathOperator{\matSO}{SO}
-\DeclareMathOperator{\supp}{supp}
-\DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\J}{J\mkern-1mu}
 \DeclareMathOperator{\Potmenge}{\mathcal{P}}
-%\DeclareMathOperator{\Kern}{ker}
-%\DeclareMathOperator{\Image}{im}
+\DeclareMathOperator{\supp}{supp}
 
 % make quantors that use \limits per default
 \DeclareMathOperator*{\Exists}{\exists}
@@ -175,51 +168,44 @@
 \newcommand{\setboundary}[1]{\partial #1}
 
 % just some shortcuts
-\newcommand{\mr}{\mathrm}
-\newcommand{\mt}{^\mathsf{t}}
-\newcommand{\defeq}{\coloneqq}
-\newcommand{\eqdef}{\eqqcolon}
-%\newcommand{\barfrak}[1]{\bar{\mathfrak{#1}}}
-%\newcommand{\len}[1][R]{\modulelength_{#1}}
-%\newcommand{\ZRest}[1]{\Z/#1\Z}
-%\newcommand{\D}{\mr{d}}
-%\newcommand{\A}[2]{a_{#1#2}}
-%\newcommand{\vzfix}{\phantom{-}}
-\newcommand{\qiffq}{\quad\iff\quad}
-\newcommand{\qimpliesq}{\quad\implies\quad}
-\newcommand{\qoderq}{\qtextq{oder}}
-\newcommand{\qqundqq}{\qqtextqq{und}}
-\newcommand{\qundq}{\qtextq{und}}
-\newcommand{\qqtextqq}[1]{\qquad\text{#1}\qquad}
-\newcommand{\qtextq}[1]{\quad\text{#1}\quad}
-\newcommand{\supnorm}[1]{\norm{#1}_\infty}
 \newcommand{\borelsigmaalg}{\mathcal{B}}
-\newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
-\newcommand{\half}{\frac{1}{2}}
-\newcommand{\thalf}{\tfrac{1}{2}}
-\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
-\newcommand{\pot}[1]{\Potmenge(#1)}
-
-
-\newcommand{\frakU}{\mathfrak{U}}
-
 \newcommand{\continuous}{C}
 \newcommand{\contcomp}{C_c}
 \newcommand{\contcompplus}{C_c^+}
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\dif}[2][\;]{#1\mathrm{d} #2}
+\newcommand{\eqdef}{\eqqcolon}
+\newcommand{\frakU}{\mathfrak{U}}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\mr}{\mathrm}
+\newcommand{\mt}{^\mathsf{t}}
+\newcommand{\Nfolge}[1]{\left(#1_n\right)_{n\in\N}}
+\newcommand{\pot}[1]{\Potmenge(#1)}
+\newcommand{\qiffq}{\quad\iff\quad}
+\newcommand{\qimpliesq}{\quad\implies\quad}
+\newcommand{\qoderq}{\qtextq{oder}}
+\newcommand{\qqtextqq}[1]{\qquad\text{#1}\qquad}
+\newcommand{\qqundqq}{\qqtextqq{und}}
+\newcommand{\qtextq}[1]{\quad\text{#1}\quad}
+\newcommand{\qundq}{\qtextq{und}}
+\newcommand{\supnorm}[1]{\norm{#1}_\infty}
+\newcommand{\thalf}{\tfrac{1}{2}}
 
+% overwrite \Re and \Im with less fancier definitions
 \DeclareMathOperator{\Realteil}{Re}
 \DeclareMathOperator{\Imaginaerteil}{Im}
 \let\Re=\Realteil
 \let\Im=\Imaginaerteil
 
 
-% make a \Mid macro as flexible replacement for \mid in sets definitions
+% make a \Mid macro as flexible replacement for \mid in set definitions
 \newcommand{\Mid}[1][\,]{%
 #1%
 \ifnum\currentgrouptype=16%
 \middle\vert\else\vert\fi%
 #1%
 }
+
 % \dots and a version for custom size control
 \newcommand{\cMid}[2][\,]{%
 #1#2\vert#1%
@@ -227,10 +213,6 @@
 
 % listing with -- is nicer than with bullets 
 \setlist[itemize,1]{label=--}
-
-%% xy tip selection (ComputerModern)
-%%\SelectTips{cm}{}
-%%\UseTips
 
 % start at chapter 0
 \setcounter{chapter}{-1}
@@ -247,7 +229,6 @@
 \input{chap2}
 \input{chap3}
 
-\nocite{bookc:folland95}
 \nocite{www:mp:gruppenzwang7}
 
 \appendix
