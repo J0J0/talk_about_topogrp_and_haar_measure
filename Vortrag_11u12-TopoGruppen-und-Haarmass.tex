@@ -107,7 +107,7 @@
 \let\origthmhead=\thmhead
 \renewcommand{\thmhead}[3]{%
 \origthmhead{#1}{#2}{#3}%
-\pdfbookmark[2]{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
+\belowpdfbookmark{#1\@ifnotempty{#1}{ }#2\thmnote{ (#3)}}{#1#2}%
 }
 \makeatother
 
